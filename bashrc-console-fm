@@ -3,6 +3,8 @@
 
 # $OSL/bashrc-console-fm  sourced by  $AjB/bashrc-console  &  $MSWSL\bashrc
 
+locx () { locate -i $1 | xcol $1; }
+
 #=> dts
 # date time-sorted lists of files
 
