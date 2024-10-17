@@ -5,7 +5,6 @@
 
 #  depends on  $OSAB/Bash/export-storage
 #  symlink ($OSAB/bs-symlinks/jo-0.sh) sourced by  $AjB/bash_profile
-
 #  also sourced by  $MSWSL\bash_profile
 
 export MANPATH=/usr/share/man/  # for  xman
@@ -20,8 +19,6 @@ export PAPERSIZE=A4  # libpaper
 #=> storage
 # here I'm taking care to avoid variables that only differ by case
 
-export CPdoc=$CrPl/documenting
-    export LTXj=$CPdoc/LaTeX/jo  # $LTXj
 export Imagey=$AjB/Imagey  # $Imagey  used in  $AjB/bashrc-wm
 export lazy="$HOME/.local/share/nvim/lazy"  # $lazy - neovim  plugins
 export lclm=$ulL/clm  # $lclm  linux command-line mail, was  GNULE
@@ -83,6 +80,9 @@ export JJt0=$DJH/Jo-then0  # used in  $TeNo
 export DWp=$ITstack/DokuWiki/pages  # $DWp
 export ITscc=$ITstack/copied-code  # $ITscc  - needed resources
 export ITscr=$ITstack/copied-reference  # handy
+    export CrPl=$ITstack/CP
+        export CPdoc=$CrPl/documenting
+            export LTXj=$CPdoc/LaTeX/jo  # $LTXj
     export ITsrul=$ITscr/unix-like  # $ITsrul
 
 #==> rooting on $onGH
