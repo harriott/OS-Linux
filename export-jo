@@ -5,7 +5,7 @@
 
 #  depends on  $OSAB/Bash/export-storage
 #  symlink ($OSAB/bs-symlinks/jo-0.sh) sourced by  $AjB/bash_profile
-#  also sourced by  $MSWSL\bash_profile
+#  also sourced by  $MSn/WSL/bash_profile
 
 export MANPATH=/usr/share/man/  # for  xman
 ur=$(uname -r); if [[ $ur =~ 'arch' || $ur =~ 'zen' ]]; then
@@ -21,7 +21,6 @@ export PAPERSIZE=A4  # libpaper
 
 export Imagey=$AjB/Imagey  # $Imagey  used in  $AjB/bashrc-wm
 export lazy="$HOME/.local/share/nvim/lazy"  # $lazy - neovim  plugins
-export lclm=$ulL/clm  # $lclm  linux command-line mail, was  GNULE
 export Openbox=$ABjo/wm/Openbox
     export Obc=$Openbox/openbox  # $Obc - configurations
 export TeNo=$core/TextNotes  # used in  $TeNo
@@ -37,7 +36,7 @@ export DCGRs=$Drpbx/Cop/GRs
 
 #==> rooting on $DJH
 export CfWk=$DJH/Cop-work
-    export ScEn=$CfWk/education/Science-Engineering  # $ScEn
+    export Cwet=$CfWk/education/technos  # $Cwet
 export Cfzd=$DJH/work-Cz
     export CzMa=$Cfzd/manage  # $CzMa
     export CzPeo=$Cfzd/people  # $CzPeo
@@ -84,12 +83,13 @@ export ITscr=$ITstack/copied-reference  # handy
         export CPdoc=$CrPl/documenting
             export LTXj=$CPdoc/LaTeX/jo  # $LTXj
     export ITsrul=$ITscr/unix-like  # $ITsrul
+export lclm=$ulL/clm  # $lclm  linux command-line mail
 
 #==> rooting on $onGH
 export MD4PDF=$onGH/pandoc-md4pdf  # $MD4PDF  is unambiguous
 export misc=$onGH/misc  # $misc
 export MSWin10=$onGH/OS-MSWin10  # $MSWin10  used in  $DWp  &  $TeNo
-  export MSWSL=$MSWin10/WSL  # $MSWSL
+  export MSn=$MSWin10/nodes  # $MSn
 export OSAT=$onGH/OS-Android-Termux  # $OSAT
 export vimfiles=$onGH/vimfiles
     [ -d "$onGH" ] || export vimfiles=~/vimfiles  # when building Arch

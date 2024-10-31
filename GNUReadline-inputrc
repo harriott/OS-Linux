@@ -2,7 +2,7 @@
 
 # $OSAB/Bash/GNUReadline-inputrc - configure GNU Readline
 # symlinked by
-#  $MSWSL/bs-symlinks.sh
+#  $MSn/set/8-WSL-symlinks.sh
 #  $OSAB/bs-symlinks/jo-0.sh
 #  $OSAB/bs-symlinks/root.sh
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 # vim: ft=sh sw=2:
 
-# $OSL/bashrc-console-fm  sourced by  $AjB/bashrc-console  &  $MSWSL\bashrc
+# $OSL/bashrc-console-fm  sourced by  $AjB/bashrc-console  &  $MSn/WSL/bashrc
 
 locx () { locate -i $1 | xcol $1; }
 
@@ -39,26 +39,14 @@ fdtsKeyString () {
 
 #==> common functionality
 export printfDTsort='-printf %TY-%Tm-%Td\ %TH:%TM\ %p\\n | sort'
-fdtsListHeader () { echo "" > $1; echo $PWD >> $1; echo "" >> $1; }
+fListHeader () { echo "" > $1; echo $PWD >> $1; echo "" >> $1; }
 
 fdtsKS () {
-  fdtsListHeader $fdtsKSlist
+  fListHeader $fdtsKSlist
   eval "find . $fdtsKSprune -iname \"$fdtsKSsearch\" $printfDTsort >> $fdtsKSlist"
   echo "" >> $fdtsKSlist
   echo "results are in $fdtsKSlist"
 } # internal use only
-
-#==> my Arch Forum issues
-# $DJH/search/dts-ft_bbcode.fetl
-
-fdtsbbcode () {
-  dtsfile=dts-ft_bbcode.fetl
-  fdtsListHeader $dtsfile
-  fd -tf -e bbcode >> $dtsfile
-  echo >> $dtsfile
-  rg -ttxt -l --sort modified 'ft=bbcode' >> $dtsfile
-  echo "results are in $dtsfile"
-}
 
 #=> file mime types
 fmtypes () {

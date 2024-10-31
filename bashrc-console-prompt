@@ -1,7 +1,7 @@
 #!/bin/bash
 # vim: ft=sh sw=2:
 
-# $OSL/bashrc-console-prompt  sourced by  $AjB/bashrc-console  &  $MSWSL\bashrc
+# $OSL/bashrc-console-prompt  sourced by  $AjB/bashrc-console  &  $MSn/WSL/bashrc
 
 # a colorised (bold blue) prompt, with git support
 # need to`ve  source'd  git-prompt.sh
