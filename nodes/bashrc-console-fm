@@ -107,3 +107,10 @@ export NNN_LOCKER='saidar -c' # for 0
 #  t = time
 #  v = version (of what?)
 
+#=> trash
+alias gte='gio trash --empty'
+
+# trash-cli
+alias tl='trash-list' # can give clues if python errors
+alias tre='trash-restore'
+

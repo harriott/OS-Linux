@@ -1,6 +1,6 @@
 # vim: set fdl=1 ft=sh:
 
-# $OSAB/Bash/GNUReadline-inputrc - configure GNU Readline
+# $OSL/GNUReadline-inputrc - configure GNU Readline
 # symlinked by
 #  $MSn/set/8-WSL-symlinks.sh
 #  $OSAB/bs-symlinks/jo-0.sh

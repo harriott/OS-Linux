@@ -5,6 +5,11 @@
 # $OSL/bashrc-generic  sourced by  $OSAB/Bash/bashrc-generic  &  $MSn/WSL/bashrc
 
 #=> better file managing
+alias ldf='lsd --group-dirs first'
+alias ll='lsd -al'  # show permissions and symlinks
+alias lt='lsd --tree'
+# ln -s noTarget dudSL  # tests excellent highlighting of bad links
+
 alias s="stat -c '%A %a %h %U %G %s %y %n'"
 alias so="stat -c '%a %n'"  # octal rights
 alias sm="stat -c '%y %n'"  # modification time
