@@ -1,0 +1,25 @@
+# vim: fdl=1 ft=bash sw=2:
+
+# Joseph Harriott, dim 05 janv 2025
+
+# $OSL/nodes/bashrc-wm  sourced by  $AjB/bashrc-wm  &  $MSn/WSL/bashrc
+
+# stuff that's useful when a Window Manager is installed
+
+#=> gVim cautious
+gvc () {
+  textfilefullpath=$(cd "$(dirname "$1")"; pwd -P)/$(basename "$1")
+  vimswapfile=${textfilefullpath//\//%}.swp
+  vimswapfilepath=~/.vimswap/$vimswapfile
+  if [[ -f $vimswapfilepath ]]; then
+    echo "$vimswapfilepath exists"
+  else
+    ur=$(uname -r)
+    if [[ $ur =~ 'arch' || $ur =~ 'zen' ]]; then
+      gvim $1
+    else  # microsoft WSL
+      /mnt/c/vim/vim91/gvim.exe $1 &
+    fi
+  fi
+} # opens the file in gVim only if there's no swap file present for it
+
