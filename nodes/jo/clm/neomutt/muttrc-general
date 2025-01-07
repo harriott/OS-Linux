@@ -32,8 +32,6 @@ bind pager ] half-down
 bind pager [ half-up
 
 #=> general settings
-set smtp_authenticators = 'gssapi:login'
-# set query_command = "abook --mutt-query '%s'"
 set rfc2047_parameters = yes
 set pager_stop = yes  # don't page on into next message
 set sleep_time = 0  # Pause 0 seconds for informational messages

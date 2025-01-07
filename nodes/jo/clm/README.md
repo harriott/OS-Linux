@@ -17,7 +17,9 @@ I started with help from Luke Smith. [Mutt Wizard: Command Line Email at 156% Ef
 - **Searching for text** in a folder, an account, or all accounts is easy, either using `notmuch` (I've made a couple of small tools in my `bashrc-email` for pulling out the text of emails to `gVim`) or by doing something like a `ripgrep`, `~/.local/share/mail$ rg Miscov`.
 
 # configuration
-I configure access to these files in my [$AjB/bashrc-clm](https://github.com/harriott/OS-ArchBuilds/blob/master/jo/Bash/bashrc-clm) which defines aliases like this:
+I define `$clMail` in my [$MSn/WSL/bash_profile](https://github.com/harriott/OS-MSWin10/blob/master/nodes/WSL/bash_profile), [$OSAB/Bash/export-storage](https://github.com/harriott/OS-ArchBuilds/blob/master/Bash/export-storage), and [$vfv/enter/Win10Paths.vim](https://github.com/harriott/vimfiles/blob/master/vim/enter/Win10Paths.vim).
+
+I configure access to these files in my [$OSL/nodes/bashrc-clm](https://github.com/harriott/OS-Linux/blob/main/nodes/bashrc-clm) which defines aliases like this:
 
 - `msx` = "mail sync <xAccount>" - runs `mbsync` and then updates `notmuch` tags on a local account
     - `~/.mbsyncrc` (my `$clMail/mbsyncrc-template`)
