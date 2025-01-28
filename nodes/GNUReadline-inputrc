@@ -3,8 +3,8 @@
 # $OSL/nodes/GNUReadline-inputrc - configure GNU Readline
 # symlinked by
 #  $MSn/set/6-WSL-nodes.sh
-#  $OSAB/bs-symlinks/jo-0.sh
-#  $OSAB/bs-symlinks/root.sh
+#  $OSAB/nodes-set/jo-0.sh
+#  $OSAB/nodes-set/root.sh
 
 #=> colorized completion
 # (these settings are masked by fzf)

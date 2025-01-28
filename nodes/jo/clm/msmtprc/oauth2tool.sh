@@ -8,7 +8,7 @@
 # !!!!!  this no longer works   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 # see  https://superuser.com/q/1723180/242800
-#  (= my  $jtUL/linux/email/oauth2tool_sh/msmtp-OAuth2-Gmail-mutt.md)
+#  (= my  $jtULl/email/oauth2tool_sh/msmtp-OAuth2-Gmail-mutt.md)
 
 # !!!!!  this no longer works   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

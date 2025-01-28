@@ -4,10 +4,10 @@
 
 # $clMail/msmtprc/msmtprc-template  includes tests for sends
 
-#=> find mutt aliases
+#=> mutt aliases find
 maf () {
     fAt=$maild/foundAliasesTemp-$account
-    # $maild  is defined in  $OSAB/Bash/export-storage
+    # $maild  is defined in  $OSAB/nodes-Bash/export-storage
     notmuch show tag:$account > $fAt
     sed -Ei '/(^Cc|^From|^To):/!d' $fAt  # clear out all but addresses
     sed -Ei 's/(^Cc|^From|^To)://' $fAt  # remove directions
@@ -18,23 +18,22 @@ maf () {
     sed -Ei 's/^[ \t]+//' $fAt  # removes leading whitespace
     sed -i 's/^/alias /' $fAt  # prefix, ready to sort
     fA=$maild/$account/muttAliases
+    fA=$lclm/muttAliases-found/$account
     echo 'vim: set ft=muttaliases:' > $fA
     echo "" >> $fA
-    echo '$maild/'$account'/muttAliases  gathered by my function  maf ($AjB/bashrc-clm)' >> $fA
+    echo '$lclm/muttAliases-found/'$account'  gathered by my function  maf ($OSL/nodes/bashrc-clm)' >> $fA
     echo "" >> $fA
     sort -u $fAt >> $fA  # save as a rough collection, sorted
     rm $fAt
 } # adds found aliases to existing collections
 maff (){ account=fm;   maf; }
 mafx (){ account=gmx;  maf; }
-mafz (){ account=zou;  maf; }  # $maild/zou/muttAliases
-
-# r $lclm/muttAliases/$account
+mafz (){ account=zou;  maf; }  # $lclm/muttAliases-found/zou
 
 #=> neomutt
-alias nmf='neomutt -F $clMail/neomutt/muttrc-accounts/fm' # FastMail
-alias nmx='neomutt -F $clMail/neomutt/muttrc-accounts/gmx'
-alias nmz='neomutt -F $clMail/neomutt/muttrc-accounts/zou' # see  $OSAB/QR.md
+alias nmf='neomutt -F $clMn/muttrc-accounts/fm' # FastMail
+alias nmx='neomutt -F $clMn/muttrc-accounts/gmx'
+alias nmz='neomutt -F $clMn/muttrc-accounts/zou' # see  $OSAB/QR.md
 
 #=> notmuch
 # $clMail/notmuch/config-template
@@ -46,7 +45,7 @@ nmse () {
     mapfile -t nms < <( notmuch search "$notmuchsearch" )
     # - try  notmuch search bloch  to understand the following tweaks
     # echo ${nms[@]}  # for debugging
-    source $OSAB/Bash/xcol.sh  # shouldn't this be earlier?
+    # source $ITscc/linux/xcol.sh  # done in  $OSL/bashrc-generic
     for (( i=${#nms[@]}-1; i>=0; i-- ));do
       si="${nms[i]}"
       spaceFromSubjectTags="${si#*]}"
