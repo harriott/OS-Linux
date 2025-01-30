@@ -1,52 +1,49 @@
 #!/bin/bash
 # vim: ft=sh sw=2:
 
-# $OSL/bashrc-console-fm  sourced by  $AjB/bashrc-console  &  $MSn/WSL/bashrc
+# $OSL/nodes/bashrc-console-fm  sourced by  $AjB/bashrc-console  &  $MSn/WSL/bashrc
 
 locx () { locate -i $1 | xcol $1; }
 
 #=> dts
-# date time-sorted lists of files
+# date time-sorted lists
 
-fa () { eval "find * $printfDTsort"; }  # all files
+fa () { find * -printf %TY-%Tm-%Td\ %TH:%TM\ %p\\n | sort; }  # all files
 
 #==> by extension
 alias fx='fdtsExt'
 # fx gfm
-# fx gitignore  # $DJH/search/dts-gitignore.fetl
+# fx gitignore  # $DJH/search/dts-gitignore.fgc
 
 fdtsExt () {
   if [ $1 ]; then
-    fdtsKSsearch="*.$1"; [[ $1 = 'gitignore' ]] && fdtsKSsearch=".$1"
-    fdtsKSprune=$'-path \'*/copied-reference/*\' -prune -o -path \'*/CGHrepos/*\' -prune -o -path \'*/vimfiles/*\' -prune -o'
-    fdtsKSlist=dts-$1.fetl
-    fdtsKS
+    fl=dts-$1.ffl
+    fE1="*.$1"; [[ $1 = 'gitignore' ]] && fE1=".$1"
+    find . \
+      -path '*/Cop-code/*'         -prune -o \
+      -path '*/copied-code/*'      -prune -o \
+      -path '*/copied-reference/*' -prune -o \
+      -path '*/CGHrepos/*'         -prune -o \
+      -path '*/dev-An/*'           -prune -o \
+      -path '*/vimfiles/*'         -prune -o \
+      -iname "$fE1" -printf %TY-%Tm-%Td\ %TH:%TM\ %p\\n | sort >> $fl
+    echo '' >> $fl
   else
     echo "^ need a file type (= filename extension)"
   fi
 }
 
-#==> by keystring in name
-alias fk=fdtsKeyString
+#==> by string in name
+alias fsn=fdts_string_in_name
 
-fdtsKeyString () {
+fdts_string_in_name () {
   if [ $1 ]; then
-    fdtsKSlist=dts-$1_in_name.fetl
-    fdtsKSsearch="*$1*"
-    eval "fdtsKS $search $dtsfile"
+    ff=dts-$1_in_name.ffl
+    echo "" > $ff; echo $PWD >> $ff; echo "" >> $ff
+    find . -iname "*$1*" -printf %TY-%Tm-%Td\ %TH:%TM\ %p\\n | sort >> $ff
+    echo "" >> $ff; echo "results are in $ff"
   fi
 }
-
-#==> common functionality
-export printfDTsort='-printf %TY-%Tm-%Td\ %TH:%TM\ %p\\n | sort'
-fListHeader () { echo "" > $1; echo $PWD >> $1; echo "" >> $1; }
-
-fdtsKS () {
-  fListHeader $fdtsKSlist
-  eval "find . $fdtsKSprune -iname \"$fdtsKSsearch\" $printfDTsort >> $fdtsKSlist"
-  echo "" >> $fdtsKSlist
-  echo "results are in $fdtsKSlist"
-} # internal use only
 
 #=> file mime types
 fmtypes () {
