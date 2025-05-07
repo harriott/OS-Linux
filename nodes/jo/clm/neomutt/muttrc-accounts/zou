@@ -1,6 +1,6 @@
 # vim: ft=neomuttrc
 
-# $clMn/muttrc-accounts/zou  for  nmz  defined in  $AjB/bashrc-clm
+# $clMn/muttrc-accounts/zou  for  nmz  defined in  $OSL/nodes/bashrc-clm
 
 set from = $zou  # = my Zourit email, defined in my  $lclm/muttrc-emails
 set sendmail = "msmtp -a zou"
@@ -18,7 +18,7 @@ source $alias_file
 # if you make changes here, you probably need to clear your folders, and start afresh
 # rm -r ~/.cache/mutt/zou/* ~/.local/share/mail/zou/*
 # and fix  ~/.mbsyncrc  to correspond
-mailboxes "=Archives" "=Drafts" "=INBOX" "=Junk" "=Sent" "=Trash" "=Waiting"
+mailboxes "=2015-22" "=2023-24" "=Archives" "=Drafts" "=INBOX" "=Junk" "=Sent" "=Trash" "=Waiting"
 #  - any errors here will trigger others
 virtual-mailboxes "notmuch" "notmuch://?query=tag:zou"
 
@@ -27,6 +27,12 @@ set status_format=" -%r-NeoMutt->zou: %D [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o
 
 source $clMn/muttrc-accounts-all
 set real_name = "Joseph - Cafézoïde"
+
+macro index,pager g2 "<change-folder>=2015-22<enter>" "go to 2015-22"
+macro index,pager G2 "<save-message>=2015-22<enter>" "move mail to 2015-22"
+
+macro index,pager g4 "<change-folder>=2023-24<enter>" "go to 2023-24"
+macro index,pager G4 "<save-message>=2023-24<enter>" "move mail to 2023-24"
 
 macro index,pager ga "<change-folder>=Archives<enter>" "go to Archives"
 macro index,pager Ga "<save-message>=Archives<enter>" "move mail to Archives"

@@ -3,12 +3,12 @@
 
 # $OSL/nodes/jo/export
 
-#  symlink ($OSAB/nodes-set/jo-0.sh) sourced by  $conflit/bash_profile
-#  also sourced by  $MSn/WSL/bash_profile
+#  symlinked in  $OSAB/nodes/set/jo-0.sh, then sourced by  $AjB/bash_profile
+#   also sourced directly by  $MSn/WSL/bash_profile
 
 export MANPATH=/usr/share/man/  # for  xman
 ur=$(uname -r); if [[ $ur =~ 'arch' || $ur =~ 'zen' ]]; then
-    export distro=Arch  # $distro, used in  $Copil/sort/0-adh/adherents.sh
+    export distro=Arch  # $distro, used in  $Csst/sort/0-adh/adherents.sh
     uG="$machBld/jo/Bash/exportWS"; [[ -f $uG ]] && source $uG
 fi
 
@@ -30,14 +30,17 @@ export TeNo=$core/TextNotes  # used in  $TeNo
 #=> rooting on $Drpbx
 # $Drpbx  defined in
 #  $MSn/WSL/bash_profile
-#  $OSAB/nodes-Bash/export-storage
+#  $OSAB/nodes/Bash/export-storage
 
-export COT=$Drpbx/Cop/OutThere  # $COT  used in  $TeNo
-export DCGRs=$Drpbx/Cop/GRs
-    # - Dropbox Copied Git Repositories, used in  $OSAB/nodes-set/jo-1-awesome.sh
-    [ -d "$DCGRs" ] || export DCGRs=~/DCGRs  # when building Arch
-    export jkll=$DCGRs/CP/Ruby/Jekyll
-        export mnm=$jkll/Jekyll-jekyll-minima
+export DrCop="$Drpbx/Cop"
+    export COT="$DrCop/OutThere" # $COT  used in  $TeNo
+    export DCGRnf="$DrCop/GR-nerd-fonts"
+        export DCGRnfpf="$DCGRnf/nerd-fonts/patched-fonts"  # used in  $DCGRnf/readme.md
+    export DCGRs=$DrCop/GRs
+        # - Dropbox Copied Git Repositories, used in  $OSAB/nodes-set/jo-1-awesome.sh
+        [ -d "$DCGRs" ] || export DCGRs=~/DCGRs  # when building Arch
+        export jkll=$DCGRs/CP/Ruby/Jekyll
+            export mnm=$jkll/Jekyll-jekyll-minima
 
 #==> rooting on $DJH
 # $DJH  defined in
@@ -49,16 +52,17 @@ export CfWk=$DJH/Cop-work
 export Cfzd=$DJH/work-Cz
     export CzMa=$Cfzd/manage  # $CzMa
     export CzPeo=$Cfzd/people  # $CzPeo
-        export Copil=$CzPeo/adherents/FA+Copil  # $Copil
-            export d0g=$Copil/data-0-grab  # $d0g
-            export d1ad=$Copil/data-1-adh  # $d1ad
+        export Csst=$CzPeo/adherents/sstreat
+            export d0g=$Csst/data-0-grab  # $d0g
+            export d1ad=$Csst/data-1-adh  # $d1ad
     export CzPhy=$Cfzd/PhysicalProperty  # $CzPhy
+export hmlA=$DJH/hmlArch  # huge machine log Arch  $hmlA
 export JCop=$DJH/Cop  # used in  $TeNo
     export cFr=$JCop/France  # $cFr  used in  $TeNo
         export cFrP=$cFr/places  # $cFrP  used in  $TeNo
-    export chum=$JCop/human  # used in  $TeNo
-        export chin=$chum/ingest  # $chin  used in  $TeNo
-    export copOT=$JCop/OutThere  # $copOT  used in  $TeNo
+    export JChu=$JCop/human  # used in  $TeNo
+        export JCin=$JChu/ingest  # $JCin  used in  $TeNo
+    export jcOT=$JCop/OutThere  # $jcOT  used in  $TeNo
     export Pr0=$JCop/Practical0
         export Pr0t=$Pr0/technos  # $Pr0t
 export DaLi=$DJH/Jo-now/DailyLife  #  $DaLi  used in  $TeNo
@@ -114,13 +118,14 @@ export MSWin10=$onGH/OS-MSWin10  # $MSWin10  used in  $DWp  &  $TeNo
 export OSAT=$onGH/OS-Android-Termux  # $OSAT
 export vimfiles=$onGH/vimfiles
     [ -d "$onGH" ] || export vimfiles=~/vimfiles  # when building Arch
+    export vfn="$vimfiles/nvim"  # $vfn
     export vfv="$vimfiles/vim"
         export vfvp="$vfv/packs"  # $vfvp
 
 #====> rooting on $ulL
 # $ulL  defined in
 #  $MSn/WSL/bash_profile
-#  $OSAB/nodes-Bash/export-storage
+#  $OSAB/nodes/Bash/export-storage
 
 export lclm=$ulL/clm  # $lclm  linux command-line mail
 

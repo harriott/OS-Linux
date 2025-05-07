@@ -45,7 +45,6 @@ nmse () {
     mapfile -t nms < <( notmuch search "$notmuchsearch" )
     # - try  notmuch search bloch  to understand the following tweaks
     # echo ${nms[@]}  # for debugging
-    # source $ITscc/linux/xcol.sh  # done in  $OSL/bashrc-generic
     for (( i=${#nms[@]}-1; i>=0; i-- ));do
       si="${nms[i]}"
       spaceFromSubjectTags="${si#*]}"
@@ -64,7 +63,9 @@ nmse () {
       echo "${tpf2}${si:25:11}${tpfn} ${tpf7}${spaceFrom:1}${tpfn} ${subjectSpace% *} ${tpf7}($tags${tpf7})$tpfn"
     done
 } # gets a quick list of the relevant emails
-# can't fix time of a day
+# limitations
+#  can't fix time of a day
+#  quoted spaces have no effect
 # nmse bloch date:2021
 nmsh () {
     echo > nms

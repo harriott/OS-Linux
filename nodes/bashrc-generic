@@ -2,7 +2,7 @@
 
 # Joseph Harriott
 
-# $OSL/bashrc-generic  sourced by  $OSAB/Bash/bashrc-generic  &  $MSn/WSL/bashrc
+# $OSL/nodes/bashrc-generic  sourced by  $OSAB/nodes/Bash/bashrc-generic  &  $MSn/WSL/bashrc
 
 #=> better file managing
 alias ldf='lsd --group-dirs first'
@@ -34,7 +34,7 @@ up(){
 } # move up [n] directories
 
 #=> colours
-source $ITscc/linux/xcol.sh  # ls -a ~ | xcol bashrc inputrc
+source $ITscc/unix-linux/xcol.sh  # ls -a ~ | xcol bashrc inputrc
 
 #==> tput foreground
 # inspired by nachoparker

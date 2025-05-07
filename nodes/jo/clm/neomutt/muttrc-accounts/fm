@@ -1,6 +1,6 @@
 # vim: ft=neomuttrc
 
-# $clMn/muttrc-accounts/ftml  for  nmf  defined in  $AjB/bashrc-clm
+# $clMn/muttrc-accounts/ftml  for  nmf  defined in  $OSL/nodes/bashrc-clm
 
 set from = $fm  # = my Fastmail email, defined in my  $LE/mymuttrcAddresses
 set sendmail = "msmtp -a fm"

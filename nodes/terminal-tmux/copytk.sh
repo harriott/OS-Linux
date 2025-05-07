@@ -4,7 +4,7 @@
 # dim 05 janv 2025
 
 # on Arch need to  chmod u+x $OSL/nodes/tmux/copytk.sh
-# run'd  from  $OSL/nodes/tmux/tmux.conf
+# run'd  from  $OSL/nodes/terminal-tmux/tmux.conf
 
 #=> for tmux-copy-toolkit
 # uname -r > $OSL/tmux/unamer  # checks

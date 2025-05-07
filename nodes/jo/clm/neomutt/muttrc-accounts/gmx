@@ -1,6 +1,6 @@
 # vim: ft=neomuttrc
 
-# $clMn/muttrc-accounts/gmx  for  nmx  defined in  $AjB/bashrc-clm
+# $clMn/muttrc-accounts/gmx  for  nmx  defined in  $OSL/nodes/bashrc-clm
 
 set from = $gmx  # = my GMX email, defined in my  $lclm/mymuttrcAddresses
 set sendmail = "msmtp -a gmx"
