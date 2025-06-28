@@ -2,7 +2,7 @@
 
 # Joseph Harriott
 
-# $OSL/nodes/bashrc-generic  sourced by  $OSAB/nodes/Bash/bashrc-generic  &  $MSn/WSL/bashrc
+# $OSL/nodes/bashrc-generic  sourced by  $OSAB/nodes-Bash/bashrc-generic  $MSn/WSL/bashrc
 
 #=> better file managing
 alias ldf='lsd --group-dirs first'

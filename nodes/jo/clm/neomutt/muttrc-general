@@ -1,7 +1,7 @@
 # vim: ft=neomuttrc
 
 # $clMn/muttrc-general - general settings for  neomutt
-#  based on  $DCGRs/d-unix/d-linux/d-mail/r-LukeSmithxyz-mutt-wizard/share/mutt-wizard.muttrc
+#  based on  $cGRs/d-unix/d-linux/d-mail/r-LukeSmithxyz-mutt-wizard/share/mutt-wizard.muttrc
 #  sourced by  $clMn/muttrc-accounts-all
 
 set editor = 'nvim'

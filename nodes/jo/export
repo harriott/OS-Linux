@@ -1,48 +1,47 @@
 #!/bin/sh
-# vim: fdl=1 ft=sh:
+# vim: fdl=2 ft=sh:
 
 # $OSL/nodes/jo/export
 
-#  symlinked in  $OSAB/nodes/set/jo-0.sh, then sourced by  $AjB/bash_profile
+#  symlinked in  $OSAB/nodes-set/jo-0-Bash-X.sh, then sourced by  $AjB/bash_profile
 #   also sourced directly by  $MSn/WSL/bash_profile
 
 export MANPATH=/usr/share/man/  # for  xman
-ur=$(uname -r); if [[ $ur =~ 'arch' || $ur =~ 'zen' ]]; then
-    export distro=Arch  # $distro, used in  $Csst/sort/0-adh/adherents.sh
-    uG="$machBld/jo/Bash/exportWS"; [[ -f $uG ]] && source $uG
-fi
-
 export MOZ_GTK_TITLEBAR_DECORATION=client  # hide title bar and window border
 export PAPERSIZE=A4  # libpaper
+
+ur=$(uname -r)
+if [[ $ur =~ 'arch' || $ur =~ 'zen' ]]; then
+    export distro=Arch
+    uG="$machBld/jo/Bash/exportWS"; [[ -f $uG ]] && source $uG
+elif [[ $ur =~ 'microsoft' ]]; then
+    export distro=WSL2
+fi # $distro, used below, and in  $Csst/scripts/1-process/0-adh/adherents.sh
 
 #=> storage
 # here I'm taking care to avoid variables that only differ by case
 
-export Imagey=$AjB/Imagey  # $Imagey  used in  $AjB/bashrc-wm
-export lazy="$HOME/.local/share/nvim/lazy"  # $lazy - neovim  plugins
-export mason="$HOME/.local/share/nvim/mason/packages"  # $mason - neovim  plugins
-export nvim="$HOME/.config/nvim"  # $nvim
-export Openbox=$ABjo/wm/Openbox
-    export Obc=$Openbox/openbox  # $Obc - configurations
-export TeNo=$core/TextNotes  # used in  $TeNo
-    export TNt=$TeNo/tex  # *.tex's - used in  $AjB/bashrc-wm
+#==> code 0 $ITr
+export ITr="/run/media/jo/TOSHIBA/ITr" # $ITr
 
-#=> rooting on $Drpbx
+#==> code 0 $tricky
+export tricky="$Storage/tricky" # $tricky
+    export cGRs=$tricky/GRs
+        export jkll="$cGRs/d-CP/d-encoding/d-Ruby/d-Jekyll"
+            export mnm=$jkll/Jekyll-jekyll-minima  # $mnm  used notably in  $JHm/_layouts
+
+#==> code 1 $GRs
+[[ $distro =~ 'Arch' ]] && source $machBld/export-GRs
+
+#==> rooting on $Drpbx
 # $Drpbx  defined in
 #  $MSn/WSL/bash_profile
-#  $OSAB/nodes/Bash/export-storage
+#  $OSAB/nodes-Bash/export-storage
 
 export DrCop="$Drpbx/Cop"
     export COT="$DrCop/OutThere" # $COT  used in  $TeNo
-    export DCGRnf="$DrCop/GR-nerd-fonts"
-        export DCGRnfpf="$DCGRnf/nerd-fonts/patched-fonts"  # used in  $DCGRnf/readme.md
-    export DCGRs=$DrCop/GRs
-        # - Dropbox Copied Git Repositories, used in  $OSAB/nodes-set/jo-1-awesome.sh
-        [ -d "$DCGRs" ] || export DCGRs=~/DCGRs  # when building Arch
-        export jkll=$DCGRs/CP/Ruby/Jekyll
-            export mnm=$jkll/Jekyll-jekyll-minima
 
-#==> rooting on $DJH
+#===> rooting on $DJH
 # $DJH  defined in
 #  $MSn/WSL/bash_profile
 #  $OSAB/nodes-Bash/export-storage
@@ -79,21 +78,24 @@ export JHt=$DJH/Jo-technos
             export jtULl=$jtUL/linux  # $jtULl  used in  $core  &  $jtIT
                 export jtULlA=$jtULl/Arch  # $jtULlA  used in  $core  &  $jtIT
     export tIs=$JHt/IT-storage  # $tIs/diskUsage.txt
-export JHw=$DJH/work  # $JHw - for IT websites and more
+export JHw=$DJH/work
     export atone="$JHw/WB-Hugo/atiavda_one" # $atone
     export bilan=$JHw/ST/LPD/IdF/AB-TAP/bilan
-    export JHm=$JHw/IT-Jekyll-harriott-minima  # $JHm
-    export rEr=$JHw/France/IdF/Paris/20e-rueErmitage
-          export StEr=$rEr/StudioErmitage  # $StEr
+    export JHm="$JHw/IT-Jekyll-harriott-minima" # $JHm
+    export wP=$JHw/France/IdF/Paris
+        export rEr=$wP/20e-rueErmitage
+              export StEr=$rEr/StudioErmitage  # $StEr
+export JJt0=$DJH/Jo-then0  # used in  $TeNo
+    export T0Fr=$JJt0/world-Europe/France  # $T0Fr  used in  $TeNo
+export TeNo=$core/TextNotes  # used in  $TeNo
+    export TNt=$TeNo/tex  # *.tex's - used in  $AjB/bashrc-wm
 export Thb=$DJH/Thb-dr  # $Thb, used in
                         #  $ABjo/wm/TS/locks.sh
                         #  $OSAB/bs-4-whenWM/4-various.sh
                         #  $OSAB/nodes-jo/wm/TS/thunderbird_safely.sh
                         #  ~/.thunderbird/profiles.ini
-export JJt0=$DJH/Jo-then0  # used in  $TeNo
-    export T0Fr=$JJt0/Europe/France  # $T0Fr  used in  $TeNo
 
-#===> rooting on $coreIT
+#====> rooting on $coreIT
 # $coreIT  defined in
 #  $MSn/WSL/bash_profile
 #  $OSAB/nodes-Bash/export-storage
@@ -106,7 +108,7 @@ export ITscc=$coreIT/copied-code  # $ITscc  - needed resources
 export ITscr=$coreIT/copied-reference  # handy
     export ITsrul=$ITscr/unix-like  # $ITsrul
 
-#====> rooting on $onGH
+#=====> rooting on $onGH
 # $onHG  defined in
 #  $MSn/WSL/bash_profile
 #  $OSAB/nodes-Bash/export-storage
@@ -122,10 +124,20 @@ export vimfiles=$onGH/vimfiles
     export vfv="$vimfiles/vim"
         export vfvp="$vfv/packs"  # $vfvp
 
-#====> rooting on $ulL
-# $ulL  defined in
+#=====> rooting on $culL
+# $culL  defined in
 #  $MSn/WSL/bash_profile
-#  $OSAB/nodes/Bash/export-storage
+#  $OSAB/nodes-Bash/export-storage
 
-export lclm=$ulL/clm  # $lclm  linux command-line mail
+export lclm=$culL/clm  # $lclm  linux command-line mail
+
+#==> rooting on $HOME
+export lazy="$HOME/.local/share/nvim/lazy"  # $lazy - neovim  plugins
+export mason="$HOME/.local/share/nvim/mason/packages"  # $mason - neovim  plugins
+export nvim="$HOME/.config/nvim"  # $nvim
+
+#==> rooting on $OSAB
+export Imagey=$AjB/Imagey  # $Imagey  used in  $AjB/bashrc-wm
+export Openbox=$ABjo/wm/Openbox
+    export Obc=$Openbox/openbox  # $Obc - configurations
 
