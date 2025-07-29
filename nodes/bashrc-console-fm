@@ -2,6 +2,7 @@
 # vim: ft=sh sw=2:
 
 # $OSL/nodes/bashrc-console-fm  sourced by  $AjB/bashrc-console  &  $MSn/WSL/bashrc
+# $OSL/nodes/bashrc-console-wsl  sourced by  
 
 locx () { locate -i $1 | xcol $1; }
 
@@ -13,8 +14,10 @@ fa () { find * -printf %TY-%Tm-%Td\ %TH:%TM\ %p\\n | sort; }  # all files
 #==> by extension
 alias fx='fdtsExt'
 # fx csv
+# fx ffl
 # fx gfm
 # fx gitignore  # $DJH/search/dts-gitignore.fgc
+# fx pl
 
 fdtsExt () {
   if [ $1 ]; then

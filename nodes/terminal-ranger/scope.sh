@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# $OSL/nodes/terminal-ranger/scope.sh
+# JH - marks my tweaks
+
 set -o noclobber -o noglob -o nounset -o pipefail
 IFS=$'\n'
 
@@ -64,7 +67,7 @@ handle_extension() {
             exit 1;;
         7z)
             ## Avoid password prompt by providing empty password
-            7z l -p -- "${FILE_PATH}" && exit 5
+            7z l -p -- "${FILE_PATH}" && exit 5  # JH not  7zz
             exit 1;;
 
         ## PDF
@@ -92,6 +95,11 @@ handle_extension() {
         ods|odp)
             ## Preview as text conversion (unsupported by pandoc for markdown)
             odt2txt "${FILE_PATH}" && exit 5
+            exit 1;;
+
+        ## PowerShell - JH
+        ps1)
+            pygmentize "${FILE_PATH}" && exit 5
             exit 1;;
 
         ## XLSX
@@ -130,11 +138,6 @@ handle_extension() {
             mediainfo "${FILE_PATH}" && exit 5
             exiftool "${FILE_PATH}" && exit 5
             ;; # Continue with next handler on failure
-
-        ## Enforce bat if the extension is lua regardless of the mimetype.
-        lua | tsx)
-            bat "${FILE_PATH}" && exit 5
-
     esac
 }
 

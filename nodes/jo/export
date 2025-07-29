@@ -2,6 +2,9 @@
 # vim: fdl=2 ft=sh:
 
 # $OSL/nodes/jo/export
+#  $OSL  defined in
+#   $MSn/WSL/bash_profile
+#   $OSAB/nodes-Bash/export-storage
 
 #  symlinked in  $OSAB/nodes-set/jo-0-Bash-X.sh, then sourced by  $AjB/bash_profile
 #   also sourced directly by  $MSn/WSL/bash_profile
@@ -16,7 +19,7 @@ if [[ $ur =~ 'arch' || $ur =~ 'zen' ]]; then
     uG="$machBld/jo/Bash/exportWS"; [[ -f $uG ]] && source $uG
 elif [[ $ur =~ 'microsoft' ]]; then
     export distro=WSL2
-fi # $distro, used below, and in  $Csst/scripts/1-process/0-adh/adherents.sh
+fi # $distro, used below, and in  $Cmdts1/0-adh/adherents.sh
 
 #=> storage
 # here I'm taking care to avoid variables that only differ by case
@@ -50,15 +53,19 @@ export CfWk=$DJH/Cop-work
     export Cwet=$CfWk/education/technos  # $Cwet
 export Cfzd=$DJH/work-Cz
     export CzMa=$Cfzd/manage  # $CzMa
-    export CzPeo=$Cfzd/people  # $CzPeo
-        export Csst=$CzPeo/adherents/sstreat
-            export d0g=$Csst/data-0-grab  # $d0g
-            export d1ad=$Csst/data-1-adh  # $d1ad
+    export CzPeo=$Cfzd/people
+        export Cmdt=$CzPeo/adherents/dt  # Cafézoïde members data treat
+            export Cmdts=$Cmdt/scripts  # $Cmdts
+                export Cmdts1=$Cmdts/1-process  # $Cmdts1
+            export d0g=$Cmdt/data-0-grab  # $d0g
+            export Cmd0=$Cmdt/data-0-wgetGS  # $Cmd0
+            export d1ad=$Cmdt/data-1-adh  # $d1ad
+            export Cmd1=$Cmdt/data-1-adh  # $d1ad
     export CzPhy=$Cfzd/PhysicalProperty  # $CzPhy
 export hmlA=$DJH/hmlArch  # huge machine log Arch  $hmlA
 export JCop=$DJH/Cop  # used in  $TeNo
     export cFr=$JCop/France  # $cFr  used in  $TeNo
-        export cFrP=$cFr/places  # $cFrP  used in  $TeNo
+        export CFrp=$cFr/places  # $CFrp  used in  $TeNo
     export JChu=$JCop/human  # used in  $TeNo
         export JCin=$JChu/ingest  # $JCin  used in  $TeNo
     export jcOT=$JCop/OutThere  # $jcOT  used in  $TeNo

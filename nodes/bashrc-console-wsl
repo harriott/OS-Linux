@@ -1,0 +1,23 @@
+#!/bin/bash
+# vim: fdl=1 ft=sh sw=2:
+
+# $OSL/nodes/bashrc-console-wsl
+#  sourced by
+#   $Cmdts/0-wgetGS/check.sh
+#   $Cmdts1/0-adh/adherents.sh
+#   $OSAT/bash_profile
+
+#=> Windows Subsystem for Linux
+[[ $(uname -r) =~ 'microsoft' ]] && WSL=yes
+
+WSLp () {
+  if [ $WSL ]; then
+    if [ $1 ]; then
+      WSLpc=0  # set the count to 0
+    else
+      WSLpc=$((WSLpc+=1))
+      echo "  pause $WSLpc"; sleep 1
+    fi
+  fi
+} # obviates  "cannot ... denied"  in  $Cmdts1
+
