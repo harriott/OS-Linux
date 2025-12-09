@@ -34,7 +34,7 @@ up(){
 } # move up [n] directories
 
 #=> colours
-source $ITscc/unix-linux/xcol.sh  # ls -a ~ | xcol bashrc inputrc
+source $cITcc/unix-linux/xcol.sh  # ls -a ~ | xcol bashrc inputrc
 
 #==> tput foreground
 # inspired by nachoparker

@@ -9,6 +9,8 @@
 #  symlinked in  $OSAB/nodes-set/jo-0-Bash-X.sh, then sourced by  $AjB/bash_profile
 #   also sourced directly by  $MSn/WSL/bash_profile
 
+# $machBld  exported in  $OSAB/nodes-Bash/export-storage
+
 export MANPATH=/usr/share/man/  # for  xman
 export MOZ_GTK_TITLEBAR_DECORATION=client  # hide title bar and window border
 export PAPERSIZE=A4  # libpaper
@@ -25,11 +27,11 @@ fi # $distro, used below, and in  $Cmdts1/0-adh/adherents.sh
 # here I'm taking care to avoid variables that only differ by case
 
 #==> code 0 $ITr
-export ITr="/run/media/jo/TOSHIBA/ITr" # $ITr
+export ITr="/run/media/jo/TOSHIBA/ITr" # $ITr ($misc/ITr/ITr.md)
 
-#==> code 0 $tricky
-export tricky="$Storage/tricky" # $tricky
-    export cGRs=$tricky/GRs
+#==> code 0 $notDr
+export notDr="$Storage/notDr"
+    export cGRs="$notDr/GRs"
         export jkll="$cGRs/d-CP/d-encoding/d-Ruby/d-Jekyll"
             export mnm=$jkll/Jekyll-jekyll-minima  # $mnm  used notably in  $JHm/_layouts
 
@@ -55,13 +57,18 @@ export Cfzd=$DJH/work-Cz
     export CzMa=$Cfzd/manage  # $CzMa
     export CzPeo=$Cfzd/people
         export Cmdt=$CzPeo/adherents/dt  # Cafézoïde members data treat
+            export Cmd0=$Cmdt/data-0-wgetGS  # $Cmd0
+            export Cmd1=$Cmdt/data-1-adh  # $Cmd1
             export Cmdts=$Cmdt/scripts  # $Cmdts
                 export Cmdts1=$Cmdts/1-process  # $Cmdts1
-            export d0g=$Cmdt/data-0-grab  # $d0g
-            export Cmd0=$Cmdt/data-0-wgetGS  # $Cmd0
-            export d1ad=$Cmdt/data-1-adh  # $d1ad
-            export Cmd1=$Cmdt/data-1-adh  # $d1ad
     export CzPhy=$Cfzd/PhysicalProperty  # $CzPhy
+export DaLi=$DJH/Jo-now/DailyLife  #  $DaLi  used in  $TeNo
+export ess=$DJH/Jo-now/essential
+    export eFr=$ess/France  # $eFr
+    export hlth=$ess/health  # $hlth
+    export Sig=$ess/signatures  # $Sig  for use in creating documents
+export FrFa=$DJH/Jo-F+F
+    export FFIdF=$FrFa/France/IdF  # $FFIdF  used in  $TeNo
 export hmlA=$DJH/hmlArch  # huge machine log Arch  $hmlA
 export JCop=$DJH/Cop  # used in  $TeNo
     export cFr=$JCop/France  # $cFr  used in  $TeNo
@@ -71,13 +78,6 @@ export JCop=$DJH/Cop  # used in  $TeNo
     export jcOT=$JCop/OutThere  # $jcOT  used in  $TeNo
     export Pr0=$JCop/Practical0
         export Pr0t=$Pr0/technos  # $Pr0t
-export DaLi=$DJH/Jo-now/DailyLife  #  $DaLi  used in  $TeNo
-export ess=$DJH/Jo-now/essential
-    export eFr=$ess/France  # $eFr
-    export hlth=$ess/health  # $hlth
-    export Sig=$ess/signatures  # $Sig  for use in creating documents
-export FrFa=$DJH/Jo-F+F
-    export FFIdF=$FrFa/France/IdF  # $FFIdF  used in  $TeNo
 export JHt=$DJH/Jo-technos
     export jtIT=$JHt/IT  # used in  $core  &  $jtIT
         export jtCP=$jtIT/CP  # $jtCP
@@ -85,6 +85,7 @@ export JHt=$DJH/Jo-technos
             export jtULl=$jtUL/linux  # $jtULl  used in  $core  &  $jtIT
                 export jtULlA=$jtULl/Arch  # $jtULlA  used in  $core  &  $jtIT
     export tIs=$JHt/IT-storage  # $tIs/diskUsage.txt
+export JHThb=$DJH/Thb  # $JHThb
 export JHw=$DJH/work
     export atone="$JHw/WB-Hugo/atiavda_one" # $atone
     export bilan=$JHw/ST/LPD/IdF/AB-TAP/bilan
@@ -96,24 +97,19 @@ export JJt0=$DJH/Jo-then0  # used in  $TeNo
     export T0Fr=$JJt0/world-Europe/France  # $T0Fr  used in  $TeNo
 export TeNo=$core/TextNotes  # used in  $TeNo
     export TNt=$TeNo/tex  # *.tex's - used in  $AjB/bashrc-wm
-export Thb=$DJH/Thb-dr  # $Thb, used in
-                        #  $ABjo/wm/TS/locks.sh
-                        #  $OSAB/bs-4-whenWM/4-various.sh
-                        #  $OSAB/nodes-jo/wm/TS/thunderbird_safely.sh
-                        #  ~/.thunderbird/profiles.ini
 
 #====> rooting on $coreIT
 # $coreIT  defined in
 #  $MSn/WSL/bash_profile
 #  $OSAB/nodes-Bash/export-storage
 
-export ITsCP=$coreIT/CP
-    export CPdoc=$ITsCP/documenting
+export cITcc=$coreIT/copied-code  # $cITcc  - needed resources
+export cITCP=$coreIT/CP
+    export CPdoc=$cITCP/documenting
         export LTXj=$CPdoc/LaTeX/jo  # $LTXj
+    # export CPenc=$cITCP/encoding
+export cITcr=$coreIT/copied-reference  # handy
 export DWp=$coreIT/DokuWiki/pages  # $DWp
-export ITscc=$coreIT/copied-code  # $ITscc  - needed resources
-export ITscr=$coreIT/copied-reference  # handy
-    export ITsrul=$ITscr/unix-like  # $ITsrul
 
 #=====> rooting on $onGH
 # $onHG  defined in
@@ -140,7 +136,7 @@ export lclm=$culL/clm  # $lclm  linux command-line mail
 
 #==> rooting on $HOME
 export lazy="$HOME/.local/share/nvim/lazy"  # $lazy - neovim  plugins
-export mason="$HOME/.local/share/nvim/mason/packages"  # $mason - neovim  plugins
+export nvmp="$HOME/.local/share/nvim/mason/packages"  # $nvmp
 export nvim="$HOME/.config/nvim"  # $nvim
 
 #==> rooting on $OSAB

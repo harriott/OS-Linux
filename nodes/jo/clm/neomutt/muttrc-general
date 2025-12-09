@@ -91,8 +91,8 @@ set index_format="%3C %Z %?X?A& ? %D %-15.15F %s (%-4.4c)"
 # / ~F ==> find flagged message
 # ; (= tag-prefix) ==> apply next function to tagged messages
 # = or <Home> -> <first-entry> ==> jump to the first entry
-# J ==> next message
-# K ==> previous message
+# j/J ==> next message
+# k/K ==> previous message
 # N ==> toggle New mark
 # T ==> tag-pattern ==> tag messages matching a pattern
 #  T > .* ==> tags all in a folder

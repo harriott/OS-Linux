@@ -55,7 +55,7 @@ nmse () {
       tagsUnbracket="${subjectTags##*\(}"
       tags="${tagsUnbracket/)/}"
       tags="${tags/fm/${tpf2b}fm${tpfn}}"
-      tags="${tags/friends/${tpf7}friends}"
+      tags="${tags/friends/${tpf7}friends}"  # $clMail/notmuch/tags/fm.sh
       tags="${tags/gmx/${tpf3}gmx}"
       tags="${tags/unread/${tpf7}unread}"
       tags="${tags/waiting/${tpf7}waiting}"

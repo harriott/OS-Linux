@@ -1,5 +1,7 @@
-# !/bin/bash
+#!/bin/bash
 # vim: set et tw=0:
+
+# $clMail/notmuch/tags/gmx.sh
 
 # reset my notmuch tags
 # ---------------------

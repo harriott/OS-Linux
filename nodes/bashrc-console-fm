@@ -2,7 +2,6 @@
 # vim: ft=sh sw=2:
 
 # $OSL/nodes/bashrc-console-fm  sourced by  $AjB/bashrc-console  &  $MSn/WSL/bashrc
-# $OSL/nodes/bashrc-console-wsl  sourced by  
 
 locx () { locate -i $1 | xcol $1; }
 
@@ -10,6 +9,7 @@ locx () { locate -i $1 | xcol $1; }
 # date time-sorted lists
 
 fa () { find * -printf %TY-%Tm-%Td\ %TH:%TM\ %p\\n | sort; }  # all files
+fng () { find . ! -wholename '*/.git/*' -printf %TY-%Tm-%Td\ %TH:%TM\ %p\\n | sort; }  # excluding contents of  .git
 
 #==> by extension
 alias fx='fdtsExt'
@@ -99,14 +99,16 @@ export NNN_PLUG='c:fzcd;d:dragdrop;g:gitroot;i:ipinfo;j:autojump;o:fzopen;m:medi
 export NNN_TRASH=1 # trash (needs  trash-cli) instead of delete
 export NNN_LOCKER='saidar -c' # for 0
 
-# t (sort)
-#  a/d = (d &) apparent/disk usage
-#  c = clear
-#  e = extension
-#  r = reverse
-#  s = file size
-#  t = time
-#  v = version (of what?)
+# ?  gets help (q  quits)
+#  f file stats (q  quits)
+#  t (sort)
+#   a/d = (d &) apparent/disk usage
+#   c = clear
+#   e = extension
+#   r = reverse
+#   s = file size
+#   t = time
+#   v = version (of what?)
 
 #=> trash
 alias gte='gio trash --empty'

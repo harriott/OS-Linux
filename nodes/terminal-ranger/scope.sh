@@ -85,6 +85,16 @@ handle_extension() {
             transmission-show -- "${FILE_PATH}" && exit 5
             exit 1;;
 
+        ## exrc - JH
+        exrc)
+            # pygmentize -l vim -O style=paraiso-light "${FILE_PATH}" && exit 5
+            # pygmentize -l vim -O style=colorful "${FILE_PATH}" && exit 5
+            # pygmentize -l vim -O style=emacs "${FILE_PATH}" && exit 5
+            # pygmentize -l vim -O style=friendly "${FILE_PATH}" && exit 5
+            # pygmentize -l vim -O style=murphy "${FILE_PATH}" && exit 5
+            pygmentize -l vim -O style=tango "${FILE_PATH}" && exit 5
+            exit 1;;
+
         ## OpenDocument
         odt|sxw)
             ## Preview as text conversion
@@ -100,6 +110,11 @@ handle_extension() {
         ## PowerShell - JH
         ps1)
             pygmentize "${FILE_PATH}" && exit 5
+            exit 1;;
+
+        ## win.ini - JH
+        ini)
+            pygmentize -O style=paraiso-light "${FILE_PATH}" && exit 5
             exit 1;;
 
         ## XLSX
