@@ -16,7 +16,7 @@ alias fx='fdtsExt'
 # fx csv
 # fx ffl
 # fx gfm
-# fx gitignore  # $DJH/search/dts-gitignore.fgc
+# fx gitignore  # $DJH/search/dts-gitignore.ffl
 # fx pl
 
 fdtsExt () {

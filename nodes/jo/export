@@ -51,6 +51,8 @@ export DrCop="$Drpbx/Cop"
 #  $MSn/WSL/bash_profile
 #  $OSAB/nodes-Bash/export-storage
 
+export cFr=$DJH/Cop-France  # $cFr  used in  $TeNo
+    export CFrp=$cFr/places  # $CFrp  used in  $TeNo
 export CfWk=$DJH/Cop-work
     export Cwet=$CfWk/education/technos  # $Cwet
 export Cfzd=$DJH/work-Cz
@@ -71,8 +73,6 @@ export FrFa=$DJH/Jo-F+F
     export FFIdF=$FrFa/France/IdF  # $FFIdF  used in  $TeNo
 export hmlA=$DJH/hmlArch  # huge machine log Arch  $hmlA
 export JCop=$DJH/Cop  # used in  $TeNo
-    export cFr=$JCop/France  # $cFr  used in  $TeNo
-        export CFrp=$cFr/places  # $CFrp  used in  $TeNo
     export JChu=$JCop/human  # used in  $TeNo
         export JCin=$JChu/ingest  # $JCin  used in  $TeNo
     export jcOT=$JCop/OutThere  # $jcOT  used in  $TeNo
@@ -93,8 +93,9 @@ export JHw=$DJH/work
     export wP=$JHw/France/IdF/Paris
         export rEr=$wP/20e-rueErmitage
               export StEr=$rEr/StudioErmitage  # $StEr
-export JJt0=$DJH/Jo-then0  # used in  $TeNo
-    export T0Fr=$JJt0/world-Europe/France  # $T0Fr  used in  $TeNo
+export JJt0=$DJH/Jo-then0
+    export T0Fr=$JJt0/world-Europe/France
+        export T0Frl=$T0Fr/lieux  # $T0Frl
 export TeNo=$core/TextNotes  # used in  $TeNo
     export TNt=$TeNo/tex  # *.tex's - used in  $AjB/bashrc-wm
 
