@@ -4,12 +4,12 @@
 # $OSL/nodes/jo/export
 #  $OSL  defined in
 #   $MSn/WSL/bash_profile
-#   $OSAB/nodes-Bash/export-storage
+#   $OSAB/nodes-Bash/export-Arch
 
 #  symlinked in  $OSAB/nodes-set/jo-0-Bash-X.sh, then sourced by  $AjB/bash_profile
 #   also sourced directly by  $MSn/WSL/bash_profile
 
-# $machBld  exported in  $OSAB/nodes-Bash/export-storage
+# $machBld  exported in  $OSAB/nodes-Bash/export-Arch
 
 export MANPATH=/usr/share/man/  # for  xman
 export MOZ_GTK_TITLEBAR_DECORATION=client  # hide title bar and window border
@@ -51,12 +51,14 @@ export DrCop="$Drpbx/Cop"
 #  $MSn/WSL/bash_profile
 #  $OSAB/nodes-Bash/export-storage
 
-export cFr=$DJH/Cop-France  # $cFr  used in  $TeNo
+export cFr=$DJH/Cop-France
     export CFrp=$cFr/places  # $CFrp  used in  $TeNo
 export CfWk=$DJH/Cop-work
+    export CfWkt=$CfWk/technos  # $CfWkt
     export Cwet=$CfWk/education/technos  # $Cwet
 export Cfzd=$DJH/work-Cz
-    export CzMa=$Cfzd/manage  # $CzMa
+    export CzMa=$Cfzd/manage
+        export CzMaEx=$CzMa/expenses  # $CzMaEx
     export CzPeo=$Cfzd/people
         export Cmdt=$CzPeo/adherents/dt  # Cafézoïde members data treat
             export Cmd0=$Cmdt/data-0-wgetGS  # $Cmd0
@@ -70,7 +72,7 @@ export ess=$DJH/Jo-now/essential
     export hlth=$ess/health  # $hlth
     export Sig=$ess/signatures  # $Sig  for use in creating documents
 export FrFa=$DJH/Jo-F+F
-    export FFIdF=$FrFa/France/IdF  # $FFIdF  used in  $TeNo
+    export FFIdF=$FrFa/France/IdF  # $FFIdF
 export hmlA=$DJH/hmlArch  # huge machine log Arch  $hmlA
 export JCop=$DJH/Cop  # used in  $TeNo
     export JChu=$JCop/human  # used in  $TeNo
@@ -83,7 +85,7 @@ export JHt=$DJH/Jo-technos
         export jtCP=$jtIT/CP  # $jtCP
         export jtUL=$jtIT/UnixLike  # $jtUL  used in  $core  &  $jtIT
             export jtULl=$jtUL/linux  # $jtULl  used in  $core  &  $jtIT
-                export jtULlA=$jtULl/Arch  # $jtULlA  used in  $core  &  $jtIT
+                export jtULlA=$jtULl/Arch  # $jtULlA
     export tIs=$JHt/IT-storage  # $tIs/diskUsage.txt
 export JHThb=$DJH/Thb  # $JHThb
 export JHw=$DJH/work
@@ -96,7 +98,7 @@ export JHw=$DJH/work
 export JJt0=$DJH/Jo-then0
     export T0Fr=$JJt0/world-Europe/France
         export T0Frl=$T0Fr/lieux  # $T0Frl
-export TeNo=$core/TextNotes  # used in  $TeNo
+export TeNo=$core/TextNotes
     export TNt=$TeNo/tex  # *.tex's - used in  $AjB/bashrc-wm
 
 #====> rooting on $coreIT
@@ -109,7 +111,7 @@ export cITCP=$coreIT/CP
     export CPdoc=$cITCP/documenting
         export LTXj=$CPdoc/LaTeX/jo  # $LTXj
     # export CPenc=$cITCP/encoding
-export cITcr=$coreIT/copied-reference  # handy
+export cITcr=$coreIT/copied-reference  # $cITcr
 export DWp=$coreIT/DokuWiki/pages  # $DWp
 
 #=====> rooting on $onGH

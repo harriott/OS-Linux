@@ -14,10 +14,14 @@ fng () { find . ! -wholename '*/.git/*' -printf %TY-%Tm-%Td\ %TH:%TM\ %p\\n | so
 #==> by extension
 alias fx='fdtsExt'
 # fx csv
+# fx doc
 # fx ffl
 # fx gfm
 # fx gitignore  # $DJH/search/dts-gitignore.ffl
+# fx odt
+# fx pdf
 # fx pl
+# fx tex
 
 fdtsExt () {
   if [ $1 ]; then
@@ -114,6 +118,6 @@ export NNN_LOCKER='saidar -c' # for 0
 alias gte='gio trash --empty'
 
 # trash-cli
-alias tl='trash-list' # can give clues if python errors
+alias trl='trash-list' # can give clues if python errors
 alias tre='trash-restore'
 
