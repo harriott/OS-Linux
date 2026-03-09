@@ -3,6 +3,14 @@
 
 # $OSL/nodes/bashrc-console-fm  sourced by  $AjB/bashrc-console  &  $MSn/WSL/bashrc
 
+fmtypes () {
+  fml=file-mime.list
+  echo "vim: ft=fileMimeList:" > $fml
+  echo "" >> $fml
+  fd -tf -x file -i {} | sort >> $fml
+  echo "" >> $fml
+} # file mime types - use to check within a directory
+
 locx () { locate -i $1 | xcol $1; }
 
 #=> dts
@@ -53,15 +61,6 @@ fdts_string_in_name () {
   fi
 }
 
-#=> file mime types
-fmtypes () {
-  fml=file-mime.list
-  echo "vim: ft=fileMimeList:" > $fml
-  echo "" >> $fml
-  fd -tf -x file -i {} | sort >> $fml
-  echo "" >> $fml
-} # use to check within a directory
-
 #=> filetype frequencies
 exts () { fd -tf -u '\..+' | sed -n 's/..*\.//p' | sort | uniq -c; } # counted by extensions
 
@@ -98,7 +97,7 @@ n() {
 # ~/.config/nnn/.selection - only populated when I've selected some files
 
 source $culLA/jo/bashrc-console-NNN_BMS  # my bookmarks
-export NNN_COLORS='5723' # good for my tmux in urxvt
+export NNN_COLORS='73654273' # good for my tmux in urxvt: avoiding 0-black, 1-red
 export NNN_PLUG='c:fzcd;d:dragdrop;g:gitroot;i:ipinfo;j:autojump;o:fzopen;m:mediainf;s:chksum'
 export NNN_TRASH=1 # trash (needs  trash-cli) instead of delete
 export NNN_LOCKER='saidar -c' # for 0
