@@ -8,6 +8,7 @@
 alias ldf='lsd --group-dirs first'
 alias ll='lsd -al'  # show permissions and symlinks
 alias lt='lsd --tree'
+alias ltd='lsd -d --tree' # ltd -I .git
 # ln -s noTarget dudSL  # tests excellent highlighting of bad links
 
 alias s="$grc stat -c '%A %a %h %U %G %s %y %n'"

@@ -30,6 +30,7 @@ alias fx='fdtsExt'
 # fx pdf
 # fx pl
 # fx tex
+# fx ts
 
 fdtsExt () {
   if [ $1 ]; then

@@ -27,7 +27,7 @@ fi # $distro, used below, and in  $Cmdts1/0-adh/adherents.sh
 # here I'm taking care to avoid variables that only differ by case
 
 #==> code 0 $ITr
-export ITr="/run/media/jo/TOSHIBA/ITr" # $ITr ($misc/ITr/ITr.md)
+export ITr="/run/media/jo/TOSHIBA/ITr" # $ITr ($coreIT/reference/ITr.md)
 
 #==> code 0 $notDr
 export notDr="$Storage/notDr"
@@ -41,10 +41,10 @@ export notDr="$Storage/notDr"
 #==> rooting on $Drpbx
 # $Drpbx  defined in
 #  $MSn/WSL/bash_profile
-#  $OSAB/nodes-Bash/export-storage
+#  $OSAB/nodes-Bash/export-Arch
 
 export DrCop="$Drpbx/Cop"
-    export COT="$DrCop/OutThere" # $COT  used in  $TeNo
+    export COT="$DrCop/OutThere" # $COT
 
 #===> rooting on $DJH
 # $DJH  defined in
@@ -52,7 +52,7 @@ export DrCop="$Drpbx/Cop"
 #  $OSAB/nodes-Bash/export-storage
 
 export cFr=$DJH/Cop-France
-    export CFrp=$cFr/places  # $CFrp  used in  $TeNo
+    export CFrp=$cFr/places  # $CFrp
 export CfWk=$DJH/Cop-work
     export CfWkt=$CfWk/technos  # $CfWkt
     export Cwet=$CfWk/education/technos  # $Cwet
@@ -60,13 +60,13 @@ export Cfzd=$DJH/work-Cz
     export CzMa=$Cfzd/manage
         export CzMaEx=$CzMa/expenses  # $CzMaEx
     export CzPeo=$Cfzd/people
-        export Cmdt=$CzPeo/adherents/dt  # Cafézoïde members data treat
+        export Cmdt="$CzPeo/members/data/dt" # Cafézoïde members data treat
             export Cmd0=$Cmdt/data-0-wgetGS  # $Cmd0
             export Cmd1=$Cmdt/data-1-adh  # $Cmd1
             export Cmdts=$Cmdt/scripts  # $Cmdts
                 export Cmdts1=$Cmdts/1-process  # $Cmdts1
     export CzPhy=$Cfzd/PhysicalProperty  # $CzPhy
-export DaLi=$DJH/Jo-now/DailyLife  #  $DaLi  used in  $TeNo
+export DaLi=$DJH/Jo-now/DailyLife  #  $DaLi
 export ess=$DJH/Jo-now/essential
     export eFr=$ess/France  # $eFr
     export hlth=$ess/health  # $hlth
@@ -74,17 +74,17 @@ export ess=$DJH/Jo-now/essential
 export FrFa=$DJH/Jo-F+F
     export FFIdF=$FrFa/France/IdF  # $FFIdF
 export hmlA=$DJH/hmlArch  # huge machine log Arch  $hmlA
-export JCop=$DJH/Cop  # used in  $TeNo
-    export JChu=$JCop/human  # used in  $TeNo
-        export JCin=$JChu/ingest  # $JCin  used in  $TeNo
-    export jcOT=$JCop/OutThere  # $jcOT  used in  $TeNo
+export JCop=$DJH/Cop
+    export JChu=$JCop/human
+        export JCin=$JChu/ingest  # $JCin
+    export jcOT=$JCop/OutThere  # $jcOT
     export Pr0=$JCop/Practical0
         export Pr0t=$Pr0/technos  # $Pr0t
 export JHt=$DJH/Jo-technos
-    export jtIT=$JHt/IT  # used in  $core  &  $jtIT
+    export jtIT=$JHt/IT
         export jtCP=$jtIT/CP  # $jtCP
-        export jtUL=$jtIT/UnixLike  # $jtUL  used in  $core  &  $jtIT
-            export jtULl=$jtUL/linux  # $jtULl  used in  $core  &  $jtIT
+        export jtUL=$jtIT/UnixLike  # $jtUL
+            export jtULl=$jtUL/linux  # $jtULl
                 export jtULlA=$jtULl/Arch  # $jtULlA
     export tIs=$JHt/IT-storage  # $tIs/diskUsage.txt
 export JHThb=$DJH/Thb  # $JHThb
@@ -96,10 +96,11 @@ export JHw=$DJH/work
         export rEr=$wP/20e-rueErmitage
               export StEr=$rEr/StudioErmitage  # $StEr
 export JJt0=$DJH/Jo-then0
-    export T0Fr=$JJt0/world-Europe/France
+    export T0Fr=$JJt0/world/Europe/France
         export T0Frl=$T0Fr/lieux  # $T0Frl
 export TeNo=$core/TextNotes
     export TNt=$TeNo/tex  # *.tex's - used in  $AjB/bashrc-wm
+export ZNc="$DJH/work-Cz-manage-online-ZNc"
 
 #====> rooting on $coreIT
 # $coreIT  defined in
@@ -121,7 +122,7 @@ export DWp=$coreIT/DokuWiki/pages  # $DWp
 
 export MD4PDF=$onGH/pandoc-md4pdf  # $MD4PDF  is unambiguous
 export misc=$onGH/misc  # $misc
-export MSWin10=$onGH/OS-MSWin10  # $MSWin10  used in  $DWp  &  $TeNo
+export MSWin10=$onGH/OS-MSWin10  # $MSWin10
   export MSn=$MSWin10/nodes  # $MSn
 export OSAT=$onGH/OS-Android-Termux  # $OSAT
 export vimfiles=$onGH/vimfiles
