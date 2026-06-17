@@ -38,7 +38,7 @@ up(){
 } # move up [n] directories
 
 #=> colours
-[ -d $ITccl ] && source $ITccl/unix-linux/xcol.sh  # ls ~ | xcol music Trash
+[ ! -z $ITccl ] && [ -d $ITccl ] source $ITccl/unix-linux/xcol.sh  # ls ~ | xcol music Trash
 
 #==> tput foreground
 # inspired by nachoparker

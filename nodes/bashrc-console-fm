@@ -97,7 +97,7 @@ n() {
 
 # ~/.config/nnn/.selection - only populated when I've selected some files
 
-[ -d $culLA ] && source $culLA/jo/bashrc-console-NNN_BMS  # my bookmarks
+[ ! -z $culLA ] && [ -d $culLA ] && source $culLA/jo/bashrc-console-NNN_BMS  # my bookmarks
 export NNN_COLORS='73654273' # good for my tmux in urxvt: avoiding 0-black, 1-red
 export NNN_PLUG='c:fzcd;d:dragdrop;g:gitroot;i:ipinfo;j:autojump;o:fzopen;m:mediainf;s:chksum'
 export NNN_TRASH=1 # trash (needs  trash-cli) instead of delete
