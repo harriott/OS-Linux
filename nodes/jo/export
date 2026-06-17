@@ -2,12 +2,15 @@
 # vim: fdl=2 ft=sh:
 
 # $OSL/nodes/jo/export
+
 #  $OSL  defined in
 #   $MSn/WSL/bash_profile
 #   $OSAB/nodes-Bash/export-Arch
 
-#  symlinked in  $OSAB/nodes-set/jo-0-Bash-X.sh, then sourced by  $AjB/bash_profile
-#   also sourced directly by  $MSn/WSL/bash_profile
+#  sourced by
+#   $AjB/bash_profile
+#   $MSn/WSL/bash_profile
+#   $OSAB/nodes-root/bash_profile
 
 # $machBld  exported in  $OSAB/nodes-Bash/export-Arch
 
@@ -27,36 +30,39 @@ fi # $distro, used below, and in  $Cmdts1/0-adh/adherents.sh
 # here I'm taking care to avoid variables that only differ by case
 
 #==> code 0 $ITr
-export ITr="/run/media/jo/TOSHIBA/ITr" # $ITr ($coreIT/reference/ITr.md)
+export ITr="/run/media/jo/TOSHIBA/ITr" # $ITr ($ITcore/reference/ITr.md)
 
 #==> code 0 $notDr
 export notDr="$Storage/notDr"
     export cGRs="$notDr/GRs"
         export jkll="$cGRs/d-CP/d-encoding/d-Ruby/d-Jekyll"
-            export mnm=$jkll/Jekyll-jekyll-minima  # $mnm  used notably in  $JHm/_layouts
+            export mnm=$jkll/Jekyll-jekyll-minima  # $mnm  used notably in  $Jhm/_layouts
 
 #==> code 1 $GRs
 [[ $distro =~ 'Arch' ]] && source $machBld/export-GRs
 
-#==> rooting on $Drpbx
+#==> rooting on  $Drpbx
 # $Drpbx  defined in
 #  $MSn/WSL/bash_profile
 #  $OSAB/nodes-Bash/export-Arch
 
-export DrCop="$Drpbx/Cop"
-    export COT="$DrCop/OutThere" # $COT
+export ITcop=$Drpbx/IT/copied  # $ITcop - needed resources
+export ITmore=$Drpbx/IT/more
+    export ITmCP=$ITmore/CP  # $ITmCP
+    export ITmUL=$ITmore/UnixLike
+        export ITmULl=$ITmore/UnixLike/linux
+            export ITmULlA=$ITmore/UnixLike/linux/Arch
+export ITsto=$Drpbx/IT/storage  # $ITsto/diskUsage.txt
+export DrThb=$Drpbx/Thb  # $DrThb
+export ulLAhml="$Drpbx/dev/ulLA-hml"  # unix-like Linux Arch huge machine log  $ulLAhml
+export ITculLAh="$Drpbx/IT-culLAh"  # IT core unix-like Linux Arch huge  $ITculLAh
 
-#===> rooting on $DJH
-# $DJH  defined in
+#===> rooting on  $DrJo
+# $DrJo  defined in
 #  $MSn/WSL/bash_profile
-#  $OSAB/nodes-Bash/export-storage
+#  $OSAB/nodes-Bash/export-Arch
 
-export cFr=$DJH/Cop-France
-    export CFrp=$cFr/places  # $CFrp
-export CfWk=$DJH/Cop-work
-    export CfWkt=$CfWk/technos  # $CfWkt
-    export Cwet=$CfWk/education/technos  # $Cwet
-export Cfzd=$DJH/work-Cz
+export Cfzd=$DrJo/work-Cz
     export CzMa=$Cfzd/manage
         export CzMaEx=$CzMa/expenses  # $CzMaEx
     export CzPeo=$Cfzd/people
@@ -66,56 +72,43 @@ export Cfzd=$DJH/work-Cz
             export Cmdts=$Cmdt/scripts  # $Cmdts
                 export Cmdts1=$Cmdts/1-process  # $Cmdts1
     export CzPhy=$Cfzd/PhysicalProperty  # $CzPhy
-export DaLi=$DJH/Jo-now/DailyLife  #  $DaLi
-export ess=$DJH/Jo-now/essential
+export ess=$DrJo/now/essential
     export eFr=$ess/France  # $eFr
     export hlth=$ess/health  # $hlth
     export Sig=$ess/signatures  # $Sig  for use in creating documents
-export FrFa=$DJH/Jo-F+F
+export FrFa="$DrJo/F+F"
     export FFIdF=$FrFa/France/IdF  # $FFIdF
-export hmlA=$DJH/hmlArch  # huge machine log Arch  $hmlA
-export JCop=$DJH/Cop
-    export JChu=$JCop/human
-        export JCin=$JChu/ingest  # $JCin
-    export jcOT=$JCop/OutThere  # $jcOT
-    export Pr0=$JCop/Practical0
-        export Pr0t=$Pr0/technos  # $Pr0t
-export JHt=$DJH/Jo-technos
-    export jtIT=$JHt/IT
-        export jtCP=$jtIT/CP  # $jtCP
-        export jtUL=$jtIT/UnixLike  # $jtUL
-            export jtULl=$jtUL/linux  # $jtULl
-                export jtULlA=$jtULl/Arch  # $jtULlA
-    export tIs=$JHt/IT-storage  # $tIs/diskUsage.txt
-export JHThb=$DJH/Thb  # $JHThb
-export JHw=$DJH/work
-    export atone="$JHw/WB-Hugo/atiavda_one" # $atone
-    export bilan=$JHw/ST/LPD/IdF/AB-TAP/bilan
-    export JHm="$JHw/IT/Jekyll-harriott-minima" # $JHm
-    export wP=$JHw/France/IdF/Paris
+export Jotech=$DrJo/technos  # $Jotech
+export Jwk=$DrJo/work
+    export atone="$ITcore/WB-Hugo/atiavda_one" # $atone
+    export bilan=$Jwk/ST/LPD/IdF/AB-TAP/bilan
+    export Jhm="$ITcore/serve/Jekyll/harriott-minima" # $Jhm
+    export wP=$Jwk/France/IdF/Paris
         export rEr=$wP/20e-rueErmitage
               export StEr=$rEr/StudioErmitage  # $StEr
-export JJt0=$DJH/Jo-then0
+export JJt0=$DrJo/then0
+    export DaLi=$JJt0/DailyLife  #  $DaLi
     export T0Fr=$JJt0/world/Europe/France
         export T0Frl=$T0Fr/lieux  # $T0Frl
-export TeNo=$core/TextNotes
+export TeNo=$DrJo/now/TextNotes
     export TNt=$TeNo/tex  # *.tex's - used in  $AjB/bashrc-wm
-export ZNc="$DJH/work-Cz-manage-online-ZNc"
+export ZNc="$DrJo/work-Cz-manage-online-ZNc"
 
-#====> rooting on $coreIT
-# $coreIT  defined in
+#===> rooting on  $ITcore
+# $ITcore  defined in
 #  $MSn/WSL/bash_profile
-#  $OSAB/nodes-Bash/export-storage
+#  $OSAB/nodes-Bash/export-Arch
+#  $OSAT/bash_profile
 
-export cITcc=$coreIT/copied-code  # $cITcc  - needed resources
-export cITCP=$coreIT/CP
+export cITcc=$ITcore/copied-code  # $cITcc - to deprecate
+export cITCP=$ITcore/CP
     export CPdoc=$cITCP/documenting
         export LTXj=$CPdoc/LaTeX/jo  # $LTXj
     # export CPenc=$cITCP/encoding
-export cITcr=$coreIT/copied-reference  # $cITcr
-export DWp=$coreIT/DokuWiki/pages  # $DWp
+export ITref=$Drpbx/IT/reference  # $ITref
+export DWp=$ITcore/serve/DokuWiki/pages  # $DWp
 
-#=====> rooting on $onGH
+#====> rooting on $onGH
 # $onHG  defined in
 #  $MSn/WSL/bash_profile
 #  $OSAB/nodes-Bash/export-storage
@@ -131,19 +124,33 @@ export vimfiles=$onGH/vimfiles
     export vfv="$vimfiles/vim"
         export vfvp="$vfv/packs"  # $vfvp
 
-#=====> rooting on $culL
+#====> rooting on $culL
 # $culL  defined in
 #  $MSn/WSL/bash_profile
 #  $OSAB/nodes-Bash/export-storage
 
 export lclm=$culL/clm  # $lclm  linux command-line mail
 
-#==> rooting on $HOME
+#===> rooting on  copied
+export cOT="$Drpbx/copied/OutThere" # $cOT
+export cnFr="$Drpbx/copied/near-France"
+    export cFrp=$cnFr/places  # $cFrp
+export cnear="$Drpbx/copied/near"
+    export cnhu="$cnear/human"
+        export cnhi=$cnhu/ingest  # $cnhi
+    export cnOT=$cnear/OutThere  # $cnOT
+    export Pr0=$cnear/Practical0
+        export Pr0t=$Pr0/technos  # $Pr0t
+export cnwork="$Drpbx/copied/near-work"
+    export cnwt=$cnwork/technos  # $cnwt
+    export cnwet=$cnwork/education/technos  # $cnwet
+
+#==> rooting on  $HOME
 export lazy="$HOME/.local/share/nvim/lazy"  # $lazy - neovim  plugins
 export nvmp="$HOME/.local/share/nvim/mason/packages"  # $nvmp
 export nvim="$HOME/.config/nvim"  # $nvim
 
-#==> rooting on $OSAB
+#==> rooting on  $OSAB
 export Imagey=$AjB/Imagey  # $Imagey  used in  $AjB/bashrc-wm
 export Openbox=$ABjo/wm/Openbox
     export Obc=$Openbox/openbox  # $Obc - configurations

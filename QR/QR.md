@@ -4,7 +4,7 @@ vim: nospell:
 
 commands here are generic, except for those under the Ubuntu heading, see also `$OSAB/QR`
 
-    $cITcr/unix-like/usr_lib_X11_rgb.txt  # colours
+    $ITref/unix-like/usr_lib_X11_rgb.txt  # colours
     $misc/unix_like/linux
     dotnet --list-runtimes
     dotnet --list-sdks
@@ -441,7 +441,7 @@ Vim fileencoding utf8 reported as ASCII
 - CRLF -> LF
 
 ## sed
-    $cITcr/unix-like/sed/learnsed.sed
+    $ITref/unix-like/sed/learnsed.sed
     $cIThul/sed
     :Man sed
     echo "blia blib bou blf" | sed -E 's/bl(ia|f)//g'
@@ -646,8 +646,8 @@ find(1)
     ls -Alt | head -n9
 
 ### sizes
-    diskonaut -h
-    dust -x /  # graphical size representation of root, not descending into mounts
+    diskonaut -h  # visual of current directory
+    sudo dust -x /  # graphical size representation of root, not descending into mounts
 
 #### listed
     ls -1Rhs | sed -e "s/^ *//" | grep "^[0-9]" | sort -hr | head -n50  # neat recursive list of largest
@@ -668,6 +668,8 @@ find(1)
 
 #### ncdu
     ncdu [<directory>]
+    ncdu -h
+    sudo ncdu -x /
 
 ##### commands
 - `?` -> help
@@ -832,12 +834,13 @@ fingerprint: `xxxx xxxx xxxx xxxx xxxx  xxxx xxxx xxxx xxxx xxxx`
 
 # hw
     lsusb
+    sensors
     solaar show
     sudo chmod 777 /run/media/jo/TOSHIBA
     sudo chmod 644 $Obc/autostart/urxvtl.sh
+    sudo wipefs /dev/sdx  # reports the device signature
     uname -m  # reports eg  x86_64
     xbacklight -set 50
-    :e /run/media/jo
 
 ## battery
     acpi -h
@@ -858,6 +861,7 @@ fingerprint: `xxxx xxxx xxxx xxxx xxxx  xxxx xxxx xxxx xxxx xxxx`
 
 ### fbset
     fbset -h
+    fbset -i  # shows screen resolution
     sudo fbset
 
 framebuffer device settings
@@ -1149,6 +1153,7 @@ list open files
 # networking
     arp-scan -lx  # lists subnet hosts
     bluetoothctl -- devices
+    dhcpcd -k [interface]  # --release
     sudo iptraf-ng  # ncurses network statistic monitoring utility
     sudo lshw -c network
     sudo lsof -i -P -n | grep LISTEN  # to see the listening ports
@@ -1164,14 +1169,16 @@ list open files
     uname -n  # hostname
 
 ## iproute2
-    ip a  # ip address show
-    ip l  # lists machine's ethernet devices
+    ip a  # (address show)
+    ip l  # (link show) lists machine's ethernet devices
     ip neigh  # subnet hosts
-    ip r  # ip route show - compactly shows my internal ip address
+    ip r  # (route show) compactly shows my internal ip address
+
+if connection problems, `sudo ip l set wlan0 down; sudo ip l set wlan0 up`
 
 ## iwd
     man iwd
-    sudo ls /var/lib/iwd  # reports internet source
+    sudo ls /var/lib/iwd  # saved SSID files with pw's
     systemctl status iwd.service
 
 ### iwctl
@@ -1183,6 +1190,7 @@ list open files
 requires a `DHCP` client to get an IP address
 
 ## NetworkManager
+    nmcli -h
     nmcli device  # list of networking devices
     nmcli device wifi list | cat  # paged list of SSIDs, with those IN-USE starred
     nmcli device wifi connect <SSID> password <pw>
@@ -1265,6 +1273,7 @@ requires a `DHCP` client to get an IP address
 pass(1)
 
 # processes
+    hyperfine --runs 5 'sleep 0.3'
     lsof -i
     pidof init  # process id of  init, which is always 1
     sudo iotop -o
@@ -1294,7 +1303,7 @@ niceness: `-20` = highest priority, `19` = lowest
 
 ## Bash
     $misc/linux/QR/script.sh
-    $cITcr/unix-like/LearnBash.sh
+    $ITref/unix-like/LearnBash.sh
     $culLB/colours
     $culLB/Scratch0.sh
     /etc/profile
@@ -1318,7 +1327,7 @@ niceness: `-20` = highest priority, `19` = lowest
     spectroterm -h
     tail -1 <file>  # last line
     tail +3 <file>  # cat from line 3
-    za $cITcr/unix-like/linux/GNUOS/bash.pdf
+    za $ITref/unix-like/linux/GNUOS/bash.pdf
 
 ```bash
 case 'one' in
@@ -1548,7 +1557,7 @@ don't export them
 #### integers
     (( $1 == 1 || $1 == 2 )) && echo "number 1 or 2"
     ((i-=2)) # decrements $i by 2
-    i=0; echo $((i+=1))
+    echo $((i+=1)) # no need to predefine  i
     n=2; if ! (( $n == 1 )); then echo 'not 1'; fi
     n=1; printf "%03d\n" $n
     n=08; (( 10#$n > 7 )) && o base10  # because 08 is an impossible octal
@@ -1570,9 +1579,6 @@ don't export them
     empty=''; [ -z $empty ] && echo empty
 
 #### strings
-    [[ ! $t =~ (y|n) ]] && echo 'good answer'
-    [ 'y' == 'n' ] || echo 'nope'
-    n=''; n=n; [[ -n $n ]] && echo $n
     o lkj | rev | cut -c 2- | rev
     o ljk | sed 's/.$//'
     s='long'; o ${#s} # length
@@ -1613,6 +1619,13 @@ case conversions: `var=vAlUe; o ${var^^}; o "${var,,}"`
 ##### script's name
     DIR=$(dirname "${BASH_SOURCE[0]}")  # get the directory name
     DIR=$(realpath "${DIR}")  # resolve its full path if need be
+
+##### tests
+    [[ ! $t =~ (y|n) ]] && echo 'good answer'
+    t=ha; [[ $t =~ a ]] && echo "there's an a"
+    [[ $u ]] || echo $n
+    [ 'y' == 'n' ] || echo 'nope'
+    n=''; n=n; [[ -n $n ]] && echo $n
 
 ## flow control
 - `ctrl+q` continue
@@ -2030,6 +2043,7 @@ https://packages.ubuntu.com/
 
 # WAN
     dig harriott.github.io
+    find ~/Dropbox/ ! -user $USER  # rapidly finds anything that would trigger  /tmp/tmp*
     fping -h
     gping google.com
     if wget -q --spider google.com; then echo online; fi
@@ -2050,6 +2064,8 @@ avoid Dropbox flexible file names: `fd -u '"|\*|:|<|>|\?|\\|\|'`
     cha -V
     cha https://en.wikipedia.org
     mancha cha
+
+only see top of page in neovim terminal
 
 ### key bindings
 - `alt+i` toggle images

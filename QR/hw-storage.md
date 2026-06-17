@@ -14,6 +14,23 @@ vim: nospell:
 
 mount(8)
 
+## xmask
+    =0<owner><group><other>
+
+`dmask` for directory, `fmask` for files, `umask` for both
+
+### permission restrictions
+0 = rwx
+1 = rw-
+2 = r-x
+3 = r--
+4 = -wx
+5 = -w-
+6 = --x
+7 = ---
+
+nodes can have any permissions of their own up to these
+
 # non-optical
     blockid -h  # --help
     df -h /mnt/*
