@@ -147,7 +147,7 @@ export cnwork="$Drpbx/copied/near-work"
 #==> rooting on  $HOME
 export lazy="$HOME/.local/share/nvim/lazy"  # $lazy - neovim  plugins
 export nvmp="$HOME/.local/share/nvim/mason/packages"  # $nvmp
-export ="$HOME/.config/nvim"  # $nvim
+export nvim="$HOME/.config/nvim"  # $nvim
 
 #==> rooting on  $OSAB
 export Imagey=$AjB/Imagey  # $Imagey  used in  $AjB/bashrc-wm
