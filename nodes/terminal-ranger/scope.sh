@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
-# $OSL/nodes/terminal-ranger/scope.sh
 # JH - marks my tweaks
+#  Make executable (can't recall why):
+#   chmod +x $OSL/nodes/terminal-ranger/scope.sh
+#   - propagates through to  git clone
 
 set -o noclobber -o noglob -o nounset -o pipefail
 IFS=$'\n'

@@ -39,7 +39,7 @@ export notDr="$Storage/notDr"
             export mnm=$jkll/Jekyll-jekyll-minima  # $mnm  used notably in  $Jhm/_layouts
 
 #==> code 1 $GRs
-[[ $distro =~ 'Arch' ]] && source $machBld/export-GRs
+[[ $myDrA && $distro =~ 'Arch' ]] && source $machBld/export-GRs
 
 #==> rooting on  $Drpbx
 # $Drpbx  defined in
@@ -51,11 +51,10 @@ export ITmore=$Drpbx/IT/more
     export ITmCP=$ITmore/CP  # $ITmCP
     export ITmUL=$ITmore/UnixLike
         export ITmULl=$ITmore/UnixLike/linux
-            export ITmULlA=$ITmore/UnixLike/linux/Arch
+            export ITmULlA=$ITmore/UnixLike/linux/Arch  # $ITmULlA
 export ITsto=$Drpbx/IT/storage  # $ITsto/diskUsage.txt
 export DrThb=$Drpbx/Thb  # $DrThb
 export ulLAhml="$Drpbx/dev/ulLA-hml"  # unix-like Linux Arch huge machine log  $ulLAhml
-export ITculLAh="$Drpbx/IT-culLAh"  # IT core unix-like Linux Arch huge  $ITculLAh
 
 #===> rooting on  $DrJo
 # $DrJo  defined in
@@ -121,13 +120,13 @@ export OSAT=$onGH/OS-Android-Termux  # $OSAT
 export vimfiles=$onGH/vimfiles
     [ -d "$onGH" ] || export vimfiles=~/vimfiles  # when building Arch
     export vfn="$vimfiles/nvim"  # $vfn
-    export vfv="$vimfiles/vim"
-        export vfvp="$vfv/packs"  # $vfvp
+    export vfv="$vimfiles/vim"  # $vfv
+    export vfvp="$vimfiles/repos-packs"  # $vfvp
 
 #====> rooting on $culL
 # $culL  defined in
 #  $MSn/WSL/bash_profile
-#  $OSAB/nodes-Bash/export-storage
+#  $OSAB/nodes-Bash/export-Arch
 
 export lclm=$culL/clm  # $lclm  linux command-line mail
 
@@ -148,7 +147,7 @@ export cnwork="$Drpbx/copied/near-work"
 #==> rooting on  $HOME
 export lazy="$HOME/.local/share/nvim/lazy"  # $lazy - neovim  plugins
 export nvmp="$HOME/.local/share/nvim/mason/packages"  # $nvmp
-export nvim="$HOME/.config/nvim"  # $nvim
+export ="$HOME/.config/nvim"  # $nvim
 
 #==> rooting on  $OSAB
 export Imagey=$AjB/Imagey  # $Imagey  used in  $AjB/bashrc-wm

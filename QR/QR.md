@@ -196,6 +196,7 @@ VBR quality 4 is closer to the original size
 
 ## Foliate
 - `ctrl-q` = quit
+- `Menu > Advanced > Continuous`
 - mouse to bottom for scrollbar
 - mouse to top for adjustments
 
@@ -585,6 +586,7 @@ Vim fileencoding utf8 reported as ASCII
     find . -maxdepth 1 -mindepth 1 -type f -name "*"  # those in working directory
     find . -name "*" -type f ! -path '*/.git/*'
     find . -name '*.txt' ! -name 'build*'  # excluding build*
+    find . -name '.*'  # hidden files only
     find . -newer oldFile
     find . -path '*exclude_path*' -prune -o -name 'partial_filename*' -print
     find . -type f -exec du -h {} + | sort -hr > descendingSizes.txt
@@ -691,7 +693,10 @@ find(1)
 - `-l` follows symbolic links, but still showing `-> <real_path>`
 - tree(1)
 
-## ln
+## links
+hard link
+
+### ln
 - `-s` (`--symbolic`) not hard
 - ln(1)
 
@@ -868,8 +873,16 @@ framebuffer device settings
 
 ### query the card specs
     echo $(xrandr -q | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1) $(xrandr -q | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2)  # screen size
+
+#### lspci
     GPU=$(lspci | grep VGA | cut -d ":" -f3);RAM=$(cardid=$(lspci | grep VGA |cut -d " " -f1);lspci -v -s $cardid | grep " prefetchable"| cut -d "=" -f2);echo $GPU $RAM
     lspci | grep -e VGA -e 3D  # gets just the graphics card name
+    lspci -vnn | grep VGA -A 12
+
+## hwinfo
+    hwinfo --gfxcard
+    hwinfo --monitor
+    sudo hwinfo --framebuffer
 
 ## keyboard
     xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'  # scancodes
@@ -937,12 +950,12 @@ automatically selects the best orientation for filling the page
     v4l2-ctl -d /dev/video1 --list-ctrls
 
 # imagey
-    colorpicker --one-shot --preview
     gphoto2 --auto-detect  # list detected cameras
     gphoto2 -DR  # delete all files in all folders
     gphoto2 -l  # list folders
     gphoto2 -L  # list files
     gphoto2 -P  # get all files
+    gpick  # get colour under mouse pointer
     gpicview  # opens first image in directory (no thumbnails)
     exiftool <image>
     exiftool -Orientation *  # reports
@@ -1155,7 +1168,6 @@ list open files
     bluetoothctl -- devices
     dhcpcd -k [interface]  # --release
     sudo iptraf-ng  # ncurses network statistic monitoring utility
-    sudo lshw -c network
     sudo lsof -i -P -n | grep LISTEN  # to see the listening ports
 
 ## devices
@@ -1199,6 +1211,8 @@ requires a `DHCP` client to get an IP address
     nmcli connection delete <SSID>  # can help
     nmcli connection show | cat  # reports UUIDs and colourizes the active device
     nmcli connection up uuid <UUID>
+
+advantage over `iwctl` is auto-connection
 
 ## NordVPN
     nordvpn cities United_Kingdom
@@ -1276,6 +1290,7 @@ pass(1)
     hyperfine --runs 5 'sleep 0.3'
     lsof -i
     pidof init  # process id of  init, which is always 1
+    pscircle --help | mo
     sudo iotop -o
     time sleep 1
     xprop  # WM_CLASS(STRING) = "instance", "class"
@@ -1321,9 +1336,6 @@ niceness: `-20` = highest priority, `19` = lowest
     printf command
     read -p "hit Enter"; echo hello
     read a b; echo $a $b
-    shopt
-    shopt dotglob  # reports back its status
-    shopt -u nullglob  # incase  t=$'\?'; echo $t
     spectroterm -h
     tail -1 <file>  # last line
     tail +3 <file>  # cat from line 3
@@ -1345,6 +1357,8 @@ esac
     compgen -A alias | awk '{print}' ORS=' : '; echo  # compact list
     unalias
 
+they aren't bound by `bash <script>`, fix `$OSAB/bs-2-into_X/4-AUR_handlers.sh`
+
 ### Atuin
     atuin
     atuin stats
@@ -1361,9 +1375,18 @@ Bash Line Editor
 #### Vim mode
     ble-bind -P  # --print  the keybinds
 
+- `Ctrl-j`/`Ctrl-return` = `accept-line` handy when stuck in empty multiline state
 - insert-mode: `Ctrl-x Ctrl-v` = `display-shell-version`
 - normal-mode: `K` = `command-help`
 - once begun, `f1` = `command-help`
+
+### builtin - shopt
+    shopt
+    shopt dotglob  # reports
+    shopt expand_aliases  # reports
+    shopt -u nullglob  # incase  t=$'\?'; echo $t
+
+`-s` =set, `u` = unset
 
 ### clear screen (saving scrollback)
     clear -x  # erase the all lines not in scrollback
@@ -1415,11 +1438,15 @@ Bash Line Editor
 `-iregex <pattern>` = case insensitive `-regex`
 
 #### tests
-    [ -d "$d" ] && echo "directory $d is there"
     [ -f "$f" ] && echo "file $f is there"
     [ -s "nohup.out" ] && echo non-zero file size
-    [[ -d "$d" && ! -L "$d" ]] && echo "It's a directory and not a symbolic link"
     rm a b; touch a; sleep 1; touch b; ls -t; [ a -ot b ] && echo older
+
+##### directories
+    [ ! -z $undefined ] &&
+    [ -d $undefined ] && echo 'Watch out: $undefined is thought to be there!' # prefix with  [ ! -z $undefined ] &&
+    [ -d "$d" ] && echo "directory $d is there"
+    [[ -d "$d" && ! -L "$d" ]] && echo "It's a directory and not a symbolic link"
 
 ### functions
     "$@" = "$1" "$2" ...
@@ -1460,7 +1487,7 @@ Bash Line Editor
 
 ### Login shell?
     echo $0  # "-bash" = login shell, "bash" = non-login shell
-    shopt login_shell
+    shopt login_shell  # reports back
 
 ### loops
     break  # breaks out of loop
@@ -1623,7 +1650,7 @@ case conversions: `var=vAlUe; o ${var^^}; o "${var,,}"`
 ##### tests
     [[ ! $t =~ (y|n) ]] && echo 'good answer'
     t=ha; [[ $t =~ a ]] && echo "there's an a"
-    [[ $u ]] || echo $n
+    [[ $u ]] && echo "string $u"
     [ 'y' == 'n' ] || echo 'nope'
     n=''; n=n; [[ -n $n ]] && echo $n
 
@@ -1710,6 +1737,7 @@ case conversions: `var=vAlUe; o ${var^^}; o "${var,,}"`
 (GRand Unified Bootloader)
 
 ## kernel parameters
+    /proc/sys
     sysctl -a  # display all kernel parameters
     systeroid -A  # list all parameters
     systeroid -T  # list parameters in a tree
@@ -1784,6 +1812,7 @@ if no luck, can also kill the `Xfce Notify Daemon`
 `qmake -v` also reports `Qt` version
 
 ## systemd
+    isd  # interactive systemd tui (Ctrl+q to quit)
     systemctl halt
     systemctl reboot
     systemctl suspend

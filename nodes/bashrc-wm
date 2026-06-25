@@ -21,5 +21,7 @@ gvc () {
       /mnt/c/vim/vim91/gvim.exe $1 &
     fi
   fi
-} # opens the file in gVim only if there's no swap file present for it
+}
+# opens the file in gVim only if there's no swap file present for it
+# with  Nvim, no longer much of a concern
 
