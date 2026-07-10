@@ -5,7 +5,7 @@
 # $OSL/nodes/bashrc-generic
 #  sourced by
 #   $MSn/WSL/bashrc
-#   $OSAB/nodes-Bash/bashrc-generic
+#   $ABno/Bash/bashrc-generic
 
 #=> better file managing
 alias ldf='lsd --group-dirs first'
@@ -14,6 +14,7 @@ alias lt='lsd --tree'
 alias ltd='lsd -d --tree' # ltd -I .git
 # ln -s noTarget dudSL  # tests excellent highlighting of bad links
 
+# $grc  exported from  $ABno/Bash/bashrc-generic
 alias s="$grc stat -c '%A %a %h %U %G %s %y %n'"
 alias so="$grc stat -c '%a %n'"  # octal rights
 alias sm="$grc stat -c '%y %n'"  # modification time
@@ -38,7 +39,7 @@ up(){
 } # move up [n] directories
 
 #=> colours
-[ $myDrA ] && source $ITccl/unix-linux/xcol.sh  # ls ~ | xcol music Trash
+[ $myDrA ] && source $ITccl/unix-linux/xcol.sh
 
 #==> tput foreground
 # inspired by nachoparker

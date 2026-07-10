@@ -12,11 +12,13 @@ commands here are generic, except for those under the Ubuntu heading, see also `
     rainbow -h | mo  # nicoulaj/rainbow
     wcsf=$(wc -l <samplefile>); echo $wcsf
 
+`gucharmap &` (= `Accessories > Character Map`) `> View > By Unicode Block`
 Pipe Viewer
 
 # audio
     kew -h
     soxi <audioFile>  # info, including duration
+    spectroterm -h
 
 ## ALSA
     alsamixer -V all
@@ -116,20 +118,7 @@ VBR quality 4 is closer to the original size
 - `S` toggle single
 - `<`/`>` previous/next song
 
-## playerctl
-    playerctl  # quick guide
-    playerctl -l  # (--list-all) available players - firefox, mpd
-    playerctl metadata  # from the current player
-    playerctl pause
-    playerctl play
-    playerctl play-pause  # toggles
-    playerctl status
-    playerctl stop
-
 ## PulseAudio
-    pactl -h
-    pactl info
-    pactl list short
     pgrep -af pulseaudio
     pulseaudio -k  # --kill
     pulsemixer
@@ -143,7 +132,7 @@ VBR quality 4 is closer to the original size
     parecord -d 0 parecord.flac
     parecord -d 1 parecord.flac
     parecord -d 16 parecord.flac
-    pavucontrol
+    pavucontrol &  # PulseAudio volume control
 
 # bc
     bc -q
@@ -278,7 +267,7 @@ Make (software)
 #### gitconfig
     r ~/.ssh
 
-`$machBld/jo/gitconfig` inludes `$misc/CP/gitconfig`
+`$ABjo/gitconfig` inludes `$misc/CP/gitconfig`
 
 ## Ruby - rbenv
     rbenv
@@ -288,6 +277,7 @@ Make (software)
     rbenv help global
     rbenv help versions
     rbenv install 4  # installs latest major version
+    rbenv local
     rbenv uninstall 4.0.5
 
 ## TeX
@@ -295,7 +285,7 @@ Make (software)
 
 ### TeX Live
     /etc/texmf/web2c/fmtutil.cnf
-    sudo tlmgr -gui
+    sudo tlmgr -gui  # /usr/local/texlive/2025/bin/x86_64-linux/tlmgr
     sudo tlmgr update -all -dry-run
 
 #### tests
@@ -502,7 +492,7 @@ Vim fileencoding utf8 reported as ASCII
     sed -n '2,$p' <file>  # prints from the 2nd line
 
 # file manage
-    $cGRs/unix/ranger-ranger
+    $nDrGRs/unix/ranger-ranger
     fuseiso <ISO_image> <mountDirectory>
     mkdir -p  # --parents = make parent directories as needed (no error if existing)
     sudo chown -R <user>:<group> <dir> # --recursive
@@ -518,7 +508,7 @@ Vim fileencoding utf8 reported as ASCII
 - `chmod 775 file` - `-rwxrwxr-x` group can write
 - `chmod 777 file` - all can read, write and execute
 - FILE(1)
-- `fsearch`: `Ctrl+p` = Preferences
+- `fsearch &`: `Ctrl+p` = Preferences
 - install(1)
 - `ls **/*` and no variations of that!
 - `lsd`: `-I` (`--ignore-glob`)
@@ -618,6 +608,7 @@ find(1)
     echo `find . -type d | wc -l`-1 | bc  # counts all subdirectories
     find . -name "*" -type f -path '*/.git/*' | wc
     for d in $(fd -d1 -td); do find "$d" | o "$(wc -l) : $d"; done  # files in directories
+    for dir in *; do echo "$dir $(find $dir | wc -l)"; done
     isutf8 **/* | wc -l  # non UTF-8 files (fails when too many)
 
 #### including hidden
@@ -827,6 +818,7 @@ rm(1)
 # GNU Privacy Guard
     echo "encrypt me this" | gpg -ase -r jharr
     gpg --full-gen-key
+    gpg --refresh-keys  # updates from a keyserver
 
 fingerprint: `xxxx xxxx xxxx xxxx xxxx  xxxx xxxx xxxx xxxx xxxx`
 
@@ -838,7 +830,7 @@ fingerprint: `xxxx xxxx xxxx xxxx xxxx  xxxx xxxx xxxx xxxx xxxx`
     kbxutil ~/.gnupg/pubring.kbx | moar  # for a more detailed exploration
 
 # hw
-    lsusb
+    lsusb; lsusb -t
     sensors
     solaar show
     sudo chmod 777 /run/media/jo/TOSHIBA
@@ -887,7 +879,11 @@ framebuffer device settings
 ## keyboard
     xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'  # scancodes
 
-### for XF86 symbols
+### xmodmap
+- `$OSAB/mb-HPEB840G3x/jo/xmodmap`
+- `xmodmap -e "keycode ..."` is for the duration of `X`
+
+#### for XF86 symbols
     xmodmap -pke | grep Audio
     xmodmap -pke | grep Brightness
 
@@ -956,10 +952,13 @@ automatically selects the best orientation for filling the page
     gphoto2 -L  # list files
     gphoto2 -P  # get all files
     gpick  # get colour under mouse pointer
-    gpicview  # opens first image in directory (no thumbnails)
     exiftool <image>
     exiftool -Orientation *  # reports
     exiv2 <image>
+
+## GPicView
+    gpicview &  # opens first image in directory (no thumbnails)
+    Preferences > Automatically save rotated images
 
 ## feh
     feh -F  # fullscreen
@@ -1020,11 +1019,11 @@ up/down => zoom in/out
     F1 => credits
     F10 => frameless
 
-    `Alt+a` (`Adjustments`) > `i` (`Invert Image`)
-
 #### Alt
     Alt A > Exposure > Gamma
     Alt A > Tiny Planet
+
+`Alt+a` (`Adjustments`) > `i` (`Invert Image`)
 
 #### not having cropped
     Ctrl+w => next tab
@@ -1032,6 +1031,7 @@ up/down => zoom in/out
 
 #### Panels
     alt+m => Metadata Info
+    ctrl+b => Toolbar
     i => File Info
     f => hide all
     m => Metadata Ribbon
@@ -1044,9 +1044,9 @@ up/down => zoom in/out
 - `Rectangle Select > Cut > Paint Bucket` to replace an area with a solid colour fill
 
 ## pqiv
+    pqiv
     pqiv -i <animateGif> &  # opens the animated gif without the obtrusive info box
     pqiv --auto-montage-mode * &  # flat recursive view of all imagies
-    pqiv --show-bindings
 
 - can open `avif`
 - changes aren't saved
@@ -1056,6 +1056,12 @@ up/down => zoom in/out
 - recursive
 - shows size in status bar tab
 
+### key bindings
+    pqiv --show-bindings
+
+- `h` mirrors
+- `n` is nice for reading a scan
+- `<space>`/`<backspace>` next/previous
 
 ## scanimage
     scanimage -A  => --all-options => lists all available options
@@ -1158,10 +1164,21 @@ list open files
     ffprobe -i <avfile> -show_format -v quiet | sed -n 's/duration=//p'  # fractional seconds
     mediainfo <avfile> | grep Encoded
     mediainfo <avfile> | grep Title
+    vlc -I ncurses
 
 ## mpv
     mpv av://v4l2:/dev/video0
     mpv --start=-2 <avfile>  # starts 2 seconds from end
+
+## playerctl
+    playerctl  # quick guide
+    playerctl -l  # (--list-all) available players - firefox, mpd
+    playerctl metadata  # from the current player
+    playerctl pause
+    playerctl play
+    playerctl play-pause  # toggles
+    playerctl status
+    playerctl stop
 
 # networking
     arp-scan -lx  # lists subnet hosts
@@ -1336,7 +1353,6 @@ niceness: `-20` = highest priority, `19` = lowest
     printf command
     read -p "hit Enter"; echo hello
     read a b; echo $a $b
-    spectroterm -h
     tail -1 <file>  # last line
     tail +3 <file>  # cat from line 3
     za $ITref/unix-like/linux/GNUOS/bash.pdf
@@ -1357,7 +1373,7 @@ esac
     compgen -A alias | awk '{print}' ORS=' : '; echo  # compact list
     unalias
 
-they aren't bound by `bash <script>`, fix `$OSAB/bs-2-into_X/4-AUR_handlers.sh`
+inside script: `shopt -s expand_aliases; alias a='a'`
 
 ### Atuin
     atuin
@@ -1370,6 +1386,8 @@ they aren't bound by `bash <script>`, fix `$OSAB/bs-2-into_X/4-AUR_handlers.sh`
 SQLite database of commands
 
 ### ble.sh
+    ble summary
+
 Bash Line Editor
 
 #### Vim mode
@@ -1406,7 +1424,7 @@ Bash Line Editor
 
 #### =~
     [[ "hello" =~ "ll" ]] && o ll
-    v=value; [[ ! $v =~ val ]] && echo val
+    v=value; [[ $v =~ val|ue ]] && echo matched
 
 ### echo
     echo "~ stays ~ in double quotes, it's unexpanded to $HOME"
@@ -1654,6 +1672,10 @@ case conversions: `var=vAlUe; o ${var^^}; o "${var,,}"`
     [ 'y' == 'n' ] || echo 'nope'
     n=''; n=n; [[ -n $n ]] && echo $n
 
+### xcol
+    echo 'pikaur' | xcol pikaur AUR  # show limitation
+    ls ~ | xcol music Trash
+
 ## flow control
 - `ctrl+q` continue
 - `ctrl+s` stop
@@ -1679,7 +1701,6 @@ case conversions: `var=vAlUe; o ${var^^}; o "${var,,}"`
     gtk-launch --version
     halt -p
     i hier  # detailed description of the filesystem hierarchy
-    locale
     openbox --reconfigure
     passwd jo  # then re-login
     ps $(pgrep Xorg)  # shows which tty X is on
@@ -1687,9 +1708,6 @@ case conversions: `var=vAlUe; o ${var^^}; o "${var,,}"`
     swapon --show
     w  # list users and load on system
     whereis <executable>
-    xdg-open -h
-    xrdb -query -all  # shows loaded X resources
-    xset q  # shows a variety of IO settings
 
 - `awesomewm`: floating window: `winkey+left_mouse_drag`
 - lsmod(8) show what kernel modules are currently loaded
@@ -1706,7 +1724,8 @@ case conversions: `var=vAlUe; o ${var^^}; o "${var,,}"`
     bootctl -h  # --help
     find /dev/disk/by-designator -type l -ls  # recursively list all symlinks with their references
 
-## conky
+## Conky
+    conky
     conky -C  # --print-config
     killall -SIGUSR1 conky  # brings it back up
 
@@ -1750,6 +1769,17 @@ case conversions: `var=vAlUe; o ${var^^}; o "${var,,}"`
 
 - hit `Esc` to get out of weird edit mode
 - The Logfile Navigator
+
+## locale
+    locale
+    localectl list-keymaps
+    localectl list-locales
+    localectl status
+
+- `/etc/locale.gen`
+    1. uncomment desired locales (`/^[^#]`) then `# locale-gen`
+    1. `localedef --list-archive`
+- `$ locale -a` (= `--all-locales`)
 
 ## monitoring
     atop
@@ -1869,6 +1899,13 @@ if no luck, can also kill the `Xfce Notify Daemon`
     who  # lists users active on terminals
     whoami
 
+## X
+    xdg-open -h
+    xrdb -query -all  # shows loaded X resources
+    xset q  # shows a variety of IO settings
+
+XTerm: `resize`
+
 ## Xfce
     xfce4-display-settings &
     xfce4-panel -r  # reloads
@@ -1894,7 +1931,10 @@ if no luck, can also kill the `Xfce Notify Daemon`
 - `HomePage` = `XF86HomePage` = `exo-open --launch WebBrowser`
 - `Shift+Ctrl+Esc` = `xfce4-taskmanager`
 - `Super+e` = `thunar`
+- `Super+l` seems to paste in the last thing
 - `Applications > Settings > Keyboard > Application Shortcuts` can take a bash script path
+
+xfwm4 - Keyboard Shortcuts
 
 #### windows
 - `Applications > Settings > Window Manager`
@@ -1919,6 +1959,7 @@ Custom Actions: `~/.config/Thunar/uca.xml`
 - `Ctrl+Shift+n` = `create-folder`
 
 ### Xfce Notify Daemon
+    $ABjo/wm/Xfce/notifyd.sh
     systemctl --user status xfce4-notifyd
     systemctl --user start xfce4-notifyd
     systemctl --user stop xfce4-notifyd
@@ -1932,7 +1973,9 @@ no indication of priority - only distinguishing feature of `critical` notificati
 
 # term
     [ $TERM_PROGRAM == 'WezTerm' ] && o "you're in WezTerm"
-    bash $cGRs/d-unix-like/r-hackerb9/fonttable/fonttable
+    [[ $TERM =~ tmux|xterm ]] && o "you're in tmux or xterm"
+    bash $nDrGRs/d-unix-like/r-hackerb9/fonttable/fonttable
+    meow
     sudo fgconsole  # reports tty number
 
 - `^\` = `SIGQUIT`
@@ -1979,10 +2022,12 @@ no indication of priority - only distinguishing feature of `critical` notificati
     termux-info
 
 ## tmux
-    if [ $TERM == 'screen-256color' ]; then echo "you're in tmux"; fi
+    if [ $TERM == 'tmux-256color' ]; then echo "you're in tmux"; fi  # was 'screen-256color'
     pgrep tmux -l
 
 ### $ tmux ...
+    $culL/term/tmux_test.conf
+    tmux -V              # report version
     tmux a               # attach
     tmux a -t myname     # attach to session myname
     tmux detach
@@ -2069,6 +2114,9 @@ https://packages.ubuntu.com/
     file "$(command -v vim)"
     gvim &
     neovide &
+    nvim -?
+    nvim -v
+    nvim --clean
 
 # WAN
     dig harriott.github.io
@@ -2105,6 +2153,8 @@ only see top of page in neovim terminal
 
 ## email - clm
     $OSL/nodes/bashrc-clm
+    mbsync -a  # --all
+    mbsync -h
     mbsync -v
 
 ### msmtp

@@ -1,5 +1,5 @@
 
-# $OSAB/nodes-terminal/ranger/commands.py - see  $OSAB/nodes-terminal/ranger/JH.md
+# $ABjo/term/ranger/commands.py - see  $ABjo/term/ranger/JH.md
 
 
 # first setup

@@ -1,0 +1,24 @@
+#!/bin/bash
+# vim: fdl=1 ft=sh sw=2:
+
+# $OSL/nodes/bashrc-console-fm-n
+#  sourced by
+#   $ABno/root/bashrc
+#   $OSL/nodes/bashrc-console-fm
+
+#=> nnn - n
+[ -n "$NNNLVL" ] && PS1="N$NNNLVL $PS1"
+
+n() {
+  # no nesting of nnn in subshells
+    [ "${NNNLVL:-0}" -eq 0 ] || { echo "nnn is already running"; return; }
+  NNN_TMPFILE=${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd  # cd on quit only on ^G
+  [ -s "/usr/bin/cpg" ] && progress=-r  # advcpmv is installed
+  command nnn $progress -Q -U "$@"
+  if [ -f $NNN_TMPFILE ]; then
+    # ~/.config/nnn/.lastd  was created when quitting  nnn, so
+    . $NNN_TMPFILE
+    rm -f $NNN_TMPFILE > /dev/null
+  fi
+}
+

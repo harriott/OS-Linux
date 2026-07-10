@@ -79,22 +79,10 @@ ve () {
   echo "- now look in exts.exts"
 } # sorted by frequency, making use of  $vimfiles/syntax/exts.vim
 
-#=> nnn
-[ -n "$NNNLVL" ] && PS1="N$NNNLVL $PS1"
+#=> nnn 0 n
+source $OSL/nodes/bashrc-console-fm-n
 
-n() {
-  # no nesting of nnn in subshells
-    [ "${NNNLVL:-0}" -eq 0 ] || { echo "nnn is already running"; return; }
-  NNN_TMPFILE=${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd  # cd on quit only on ^G
-  [ -s "/usr/bin/cpg" ] && progress=-r  # advcpmv is installed
-  command nnn $progress -Q -U "$@"
-  if [ -f $NNN_TMPFILE ]; then
-    # ~/.config/nnn/.lastd  was created when quitting  nnn, so
-    . $NNN_TMPFILE
-    rm -f $NNN_TMPFILE > /dev/null
-  fi
-}
-
+#=> nnn 1 configure
 # ~/.config/nnn/.selection - only populated when I've selected some files
 
 [ ! -z $culLA ] && [ -d $culLA ] && source $culLA/jo/bashrc-console-NNN_BMS  # my bookmarks

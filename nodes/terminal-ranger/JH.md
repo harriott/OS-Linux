@@ -19,26 +19,26 @@ vim: fdl=3:
 ## 2 commands.py
     $OSL/nodes/terminal-ranger/commands.py
 
-`$cGRs/d-unix/r-ranger-ranger/ranger/config/commands.py` latest, not yet Version'd
+`$nDrGRs/d-unix/r-ranger-ranger/ranger/config/commands.py` latest, not yet Version'd
 
 ## 2 rc.conf
     $OSL/nodes/terminal-ranger/rc.conf
 
 ### sources
 1. `/usr/lib/python3.13/site-packages/ranger/config/rc.conf` = `/usr/share/doc/ranger/config/rc.conf`
-2. `$cGRs/d-unix/r-ranger-ranger/ranger/config/rc.conf` latest, not yet Version'd
+2. `$nDrGRs/d-unix/r-ranger-ranger/ranger/config/rc.conf` latest, not yet Version'd
 
 ## 2 rifle.conf
     $OSL/nodes/terminal-ranger/rifle.conf
 
 ### sources
 1. `/usr/lib/python3.13/site-packages/ranger/config/rifle.conf` = `/usr/share/doc/ranger/config/rifle.conf`
-2. `$cGRs/d-unix/r-ranger-ranger/ranger/config/rifle.conf` latest, not yet Version'd
+2. `$nDrGRs/d-unix/r-ranger-ranger/ranger/config/rifle.conf` latest, not yet Version'd
 
 ## 2 scope.sh
     $OSL/nodes/terminal-ranger/scope.sh
 
 ### sources
-1. `/usr/lib/python3.13/site-packages/ranger/data/scope.sh` = `/usr/share/doc/ranger/config/scope.sh`
-2. `$cGRs/d-unix/r-ranger-ranger/ranger/data/scope.sh` latest, not yet Version'd
+1. `/usr/lib/python3.14/site-packages/ranger/data/scope.sh` = `/usr/share/doc/ranger/config/scope.sh`
+2. `$nDrGRs/d-unix-like/r-ranger-ranger/ranger/data/scope.sh` latest, not yet Version'd, but last modification "Mar 5, 2025"
 

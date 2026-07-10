@@ -9,7 +9,7 @@ Setting up `mutt` with `notmuch` for the first time isn't easy, but it *is* wort
 I started with help from Luke Smith. [Mutt Wizard: Command Line Email at 156% Efficiency](https://youtu.be/mPiQuWbF57M), and his [Code](https://gitlab.com/LukeSmithxyz/mutt-wizard), and of course the excellent ArchWiki, and a load of other helpful posts around the web, and over a long time, got this here setup which now allows me to move easily in and out of email accounts, quickly sort, read, write, sync and send.
 
 - **Getting my emails** - I prefer `mbsync` (over `offlineimap`). You can find example configurations around the web.
-- **Reading my emails** - I use an alias defined in my `bashrc-email` (you can find in this repository) to fire up `neomutt` and to set `notmuch` tags
+- **Reading my emails** - I use an alias defined in my [$OSL/nodes/bashrc-clm](https://github.com/harriott/OS-Linux/blob/main/nodes/bashrc-clm) (you can find in this repository) to fire up `neomutt` and to set `notmuch` tags
     - `neomutt` is just a terminal program for reading and sorting emails. It requires a shit-load of configuration to get it working your way, but it's worth it in the end. This is the central treasure that you may be looking for. It's mildly life-changing.
     - `notmuch` provides a very quick way to tag emails to help you later find things
 - **Writing emails** - my setup launches `neovim` in the same terminal window, which is just amazingly handy for me as I do all of my organisation and writing of stuff with variants of `vim`.
@@ -17,7 +17,7 @@ I started with help from Luke Smith. [Mutt Wizard: Command Line Email at 156% Ef
 - **Searching for text** in a folder, an account, or all accounts is easy, either using `notmuch` (I've made a couple of small tools in my `bashrc-email` for pulling out the text of emails to `gVim`) or by doing something like a `ripgrep`, `~/.local/share/mail$ rg Miscov`.
 
 # configuration
-I define `$clMail` in my [$MSn/WSL/bash_profile](https://github.com/harriott/OS-MSWin10/blob/master/nodes/WSL/bash_profile), [$OSAB/nodes-Bash/export-storage](https://github.com/harriott/OS-ArchBuilds/blob/master/nodes-Bash/export-storage), and [$vfv/enter/Win10Paths.vim](https://github.com/harriott/vimfiles/blob/master/vim/enter/Win10Paths.vim).
+I define `$clMail` in my [$MSn/WSL/bash_profile](https://github.com/harriott/OS-MSWin10/blob/master/nodes/WSL/bash_profile) and my [$ABno/Bash/export-Arch](https://github.com/harriott/OS-ArchBuilds/blob/master/nodes/Bash/export-Arch).
 
 I configure access to these files in my [$OSL/nodes/bashrc-clm](https://github.com/harriott/OS-Linux/blob/main/nodes/bashrc-clm) which defines aliases like this:
 

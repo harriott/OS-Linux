@@ -7,7 +7,7 @@
 #=> mutt aliases find
 maf () {
     fAt=$maild/foundAliasesTemp-$account
-    # $maild  is defined in  $OSAB/nodes-Bash/export-storage
+    # $maild  is defined in  $ABno/Bash/export-Arch
     notmuch show tag:$account > $fAt
     sed -Ei '/(^Cc|^From|^To):/!d' $fAt  # clear out all but addresses
     sed -Ei 's/(^Cc|^From|^To)://' $fAt  # remove directions
