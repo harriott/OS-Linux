@@ -109,7 +109,7 @@ gdisk(8)
     rm -rf ~/.local/share/Trash
 
 ### trash-cli
-    $OSL/bashrc-console-fm
+    $OSL/nodes/bashrc-console-fm
     trash-empty  # lists before query
     trash-put
 

@@ -12,8 +12,6 @@
 #   $MSn/WSL/bash_profile
 #   $ABno/root/bash_profile
 
-# $ABnm  exported in  $ABno/Bash/export-Arch
-
 export MANPATH=/usr/share/man/  # for  xman
 export MOZ_GTK_TITLEBAR_DECORATION=client  # hide title bar and window border
 export PAPERSIZE=A4  # libpaper
@@ -24,7 +22,7 @@ if [[ $ur =~ 'arch' || $ur =~ 'zen' ]]; then
     if [[ $host =~ HPEB840G3(7|8) ]]; then
         uG="$ABno/m-HPEB840G3x/hi-jo/exportWS"
     else
-        uG="$ABnm/jo/Bash/exportWS"
+        uG="$ABnm/jo/Bash/exportWS" # ($ABno/Bash/export-Arch)
     fi
     [[ -f $uG ]] && source $uG
 elif [[ $ur =~ 'microsoft' ]]; then
@@ -62,7 +60,7 @@ export ITmore=$Drpbx/IT/more
     export ITmUL=$ITmore/UnixLike
         export ITmULl=$ITmore/UnixLike/linux
             export ITmULlA=$ITmore/UnixLike/linux/Arch  # $ITmULlA
-export ITsto=$Drpbx/IT/storage  # $ITsto/diskUsage.txt
+export ITsto=$Drpbx/IT/storage  # $ITsto/diskUsage.build
 export DrThb=$Drpbx/Thb  # $DrThb
 export ulLAhml="$Drpbx/dev/ulLA-hml"  # unix-like Linux Arch huge machine log  $ulLAhml
 
@@ -81,8 +79,10 @@ export Cfzd=$DrJo/work-Cz
             export Cmdts=$Cmdt/scripts  # $Cmdts
                 export Cmdts1=$Cmdts/1-process  # $Cmdts1
     export CzPhy=$Cfzd/PhysicalProperty  # $CzPhy
+    export Czre=$Cfzd/roles-employment  # $Czre
 export ess=$DrJo/now/essential
     export eFr=$ess/France  # $eFr
+        export P="$eFr/SecuriteSociale/AssuranceMaladie/Paris"
     export hlth=$ess/health  # $hlth
     export Sig=$ess/signatures  # $Sig  for use in creating documents
 export FrFa="$DrJo/F+F"
@@ -123,6 +123,7 @@ export DWp=$ITcore/serve/DokuWiki/pages  # $DWp
 
 export MD4PDF=$onGH/pandoc-md4pdf  # $MD4PDF  is unambiguous
 export misc=$onGH/misc  # $misc
+    export mull=$misc/unix_like/linux  # $misc
 export MSWin10=$onGH/OS-MSWin10  # $MSWin10
   export MSn=$MSWin10/nodes  # $MSn
 export OSAT=$onGH/OS-Android-Termux  # $OSAT
@@ -159,6 +160,7 @@ export nvmp="$HOME/.local/share/nvim/mason/packages"  # $nvmp
 export nvim="$HOME/.config/nvim"  # $nvim
 
 #==> rooting on  $OSAB
+# ($ABno/Bash/export-Arch)
 export Imagey=$AjB/Imagey  # $Imagey  used in  $AjB/bashrc-wm
 export Openbox=$ABjo/wm/Openbox
     export Obc=$Openbox/openbox  # $Obc - configurations

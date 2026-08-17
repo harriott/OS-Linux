@@ -20,5 +20,6 @@ n() {
     . $NNN_TMPFILE
     rm -f $NNN_TMPFILE > /dev/null
   fi
+  # echo "$@" # you'll see, multiple contexts don't work
 }
 

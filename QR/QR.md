@@ -5,7 +5,7 @@ vim: nospell:
 commands here are generic, except for those under the Ubuntu heading, see also `$OSAB/QR`
 
     $ITref/unix-like/usr_lib_X11_rgb.txt  # colours
-    $misc/unix_like/linux
+    $mull
     dotnet --list-runtimes
     dotnet --list-sdks
     info info
@@ -29,6 +29,7 @@ Pipe Viewer
     :Man cmus
     cmus --help
     cmus --plugins
+    cmus --version
     cmus_notify -h
 
 - C* Music Player
@@ -56,7 +57,8 @@ Pipe Viewer
     .        seek +1m
 
     ^r       toggle repeat_current
-    C        toggle continue
+    C        toggle continue (shows C in status line) next track
+    f        toggle follow (shows F in status line) of what?
     r        toggle repeat
 
     -        vol -10%
@@ -246,6 +248,7 @@ zathura man page
     echo 'bGludXhoaW50LmNvbQo=' | base64 --decode
     echo 'linuxhint.com' | base64
     git diff <file1> <file2>
+    rm -r ~/.cargo/registry/cache  # will be rebuilt
     ~\.pyenv
 
 Make (software)
@@ -279,6 +282,8 @@ Make (software)
     rbenv install 4  # installs latest major version
     rbenv local
     rbenv uninstall 4.0.5
+    rbenv rehash  # gets the shim for a new gem
+    ruby-build --list
 
 ## TeX
     pdfjam --help
@@ -436,6 +441,7 @@ Vim fileencoding utf8 reported as ASCII
     $cIThul/sed
     :Man sed
     echo "blia blib bou blf" | sed -E 's/bl(ia|f)//g'
+    o t/ | sed 's;/$;;'
     sed --version
     sed 5q <file> prints first 5 lines
     sed G <file>  # double-spaced
@@ -495,9 +501,10 @@ Vim fileencoding utf8 reported as ASCII
     $nDrGRs/unix/ranger-ranger
     fuseiso <ISO_image> <mountDirectory>
     mkdir -p  # --parents = make parent directories as needed (no error if existing)
+    nnn -V
     sudo chown -R <user>:<group> <dir> # --recursive
 
-- `$OSL/nodes/bashrc-console-fm` `nnn`
+- `$OSL/nodes/bashrc-console-fm`
 - `chmod 600 file` - owner can read and write
 - `chmod 644 file` - owner can change it, everyone else can read it
 - `chmod 660 file` - owner can read and write, and group members
@@ -563,9 +570,11 @@ Vim fileencoding utf8 reported as ASCII
     Shift+F4  -> Konsole  in a new window
 
 ## fd
+    $Drpbx/search/searches.md
     fd -tl -HL -X rm  # removes dead links
     fd -tf -e dw -x cat | wc -w  # recursively count all words in dokuwiki files
     fd -tf stderr.txt -X rm
+    mapfile -t hf < <(fd -H '^\.'); o ${hf[@]} # hidden files
 
 ## find
     find $PWD -name <file>  # gets full path
@@ -809,8 +818,12 @@ rm(1)
     sudo flatpak update
 
 # fortune
-    fortune -a
-    fortune -f
+    fortune -a  # choose from all maxims
+    fortune -f  # list the maxim files
+
+## into  lolcat
+    fortune | cowsay | lolcat -a
+    fortune | cowsay | rainbow
 
 # get at root on tty2
     Ctrl+Alt+F2 > root + pw
@@ -960,6 +973,11 @@ automatically selects the best orientation for filling the page
     gpicview &  # opens first image in directory (no thumbnails)
     Preferences > Automatically save rotated images
 
+- can't send to printer
+- `Esc` to exit
+- nice looping through folder
+- no crop
+
 ## feh
     feh -F  # fullscreen
     feh -l [*] # [recursively] list image specifications
@@ -1037,11 +1055,18 @@ up/down => zoom in/out
     m => Metadata Ribbon
     mouse right-click to find them
 
+`O` = `Panels > Overview`
+`O` = `Paneaux > Aperçu`
+
 ## Pinta
 - attempts to shows cursor position in pixels, but underestimates - use GIMP
 - `backspace` (= `Edit > Erase Selection`)
 - can't send to printer...
+- `Ctrl+s` save
+- `Ctrl+Shift+i` (= `Ajustements > Inverser les couleurs`)
+- `Ctrl+Shift+s` save as
 - `Rectangle Select > Cut > Paint Bucket` to replace an area with a solid colour fill
+- Rotation isn't easy...
 
 ## pqiv
     pqiv
@@ -1049,6 +1074,7 @@ up/down => zoom in/out
     pqiv --auto-montage-mode * &  # flat recursive view of all imagies
 
 - can open `avif`
+- can't save
 - changes aren't saved
 - plays mp4's
 - only sees specified images
@@ -1059,8 +1085,11 @@ up/down => zoom in/out
 ### key bindings
     pqiv --show-bindings
 
+- `f` (= `toggle_fullscreen(0)`)
 - `h` mirrors
-- `n` is nice for reading a scan
+- `n` (= `toggle_negate_mode(0)`) is nice for reading a scan
+- `m` toggles montage mode
+- `q` (= `quit()`)
 - `<space>`/`<backspace>` next/previous
 
 ## scanimage
@@ -1184,6 +1213,7 @@ list open files
     arp-scan -lx  # lists subnet hosts
     bluetoothctl -- devices
     dhcpcd -k [interface]  # --release
+    iwgetid wlan0  # current SSID
     sudo iptraf-ng  # ncurses network statistic monitoring utility
     sudo lsof -i -P -n | grep LISTEN  # to see the listening ports
 
@@ -1198,12 +1228,18 @@ list open files
     uname -n  # hostname
 
 ## iproute2
-    ip a  # (address show)
-    ip l  # (link show) lists machine's ethernet devices
     ip neigh  # subnet hosts
-    ip r  # (route show) compactly shows my internal ip address
+
+- `ip l` (`link show`) lists machine's ethernet devices
+- `ip r` (`route show`) compactly shows my internal ip address
 
 if connection problems, `sudo ip l set wlan0 down; sudo ip l set wlan0 up`
+
+### address show
+- `ip a`
+- `ip -4 -br a | awk '{print $3}'` (`-brief`)
+- `ip -4 -br a | awk 'FNR==2 {print $3}'` (`-brief`)
+- `ip -o a` (`-oneline`)
 
 ## iwd
     man iwd
@@ -1221,7 +1257,7 @@ requires a `DHCP` client to get an IP address
 ## NetworkManager
     nmcli -h
     nmcli device  # list of networking devices
-    nmcli device wifi list | cat  # paged list of SSIDs, with those IN-USE starred
+    nmcli device wifi list | cat  # paged list of SSID's, with those IN-USE starred
     nmcli device wifi connect <SSID> password <pw>
 
 ### saved connections
@@ -1386,9 +1422,10 @@ inside script: `shopt -s expand_aliases; alias a='a'`
 SQLite database of commands
 
 ### ble.sh
-    ble summary
+    ble summary  # reports even when not initialised
 
-Bash Line Editor
+- `Ctrl-c` changed from `SIGINT` to quit Vim insert mode
+- Bash Line Editor
 
 #### Vim mode
     ble-bind -P  # --print  the keybinds
@@ -1442,6 +1479,7 @@ Bash Line Editor
     echo */  # lists directories
     echo <file>
     for f in *; do mv $f ${f:2}; done
+    man basename
     man -h ls
     mktemp temp-XXX  # can add more X's, touch's a randomised filename
     pushd ~/some_path; pushd /another_path; popd; popd
@@ -1496,12 +1534,13 @@ Bash Line Editor
     echo "hello$IFS"."there"
 
 ### job control
-    ctrl+c
-    bg
+    Ctrl+c
     fg %n
     jobs -l
     kill %n
     kill -9 %n
+
+`Ctrl+z` to stop suspend a command then `bg` to throw it into background
 
 ### Login shell?
     echo $0  # "-bash" = login shell, "bash" = non-login shell
@@ -1518,7 +1557,7 @@ Bash Line Editor
     while read line; do echo "$line"; done <file_to_use_line_by_line
 
 #### globs
-    $misc/unix_like/linux/need_for_nullglob.sh
+    $mull/need_for_nullglob.sh
     for d in */; do echo $d; done
     for d in /mnt/*; do echo $d; done
     for f in **/*; do echo $f; done
@@ -1584,7 +1623,8 @@ substitute user identity
     firstElement=${array[0]}
     string='My string'; [[ $string =~ "My" ]] && echo success
 
-don't export them
+- `$onGH/FM-underscores/treeTidy.sh` implements sorting by length
+- don't export them
 
 ##### from file
     aff=$(<$f); aff=(${aff//'\n'/,}) # array from file  $f
@@ -1599,10 +1639,15 @@ don't export them
     for item in "${array[@]}"; do echo; echo "$item"; done
     printf '%s\n' "${array[@]}" | grep 'match'
 
+##### mapfile
+    mapfile --help
+    readarray --help
+
 #### integers
     (( $1 == 1 || $1 == 2 )) && echo "number 1 or 2"
     ((i-=2)) # decrements $i by 2
     echo $((i+=1)) # no need to predefine  i
+    i=0; ((i==0)) && echo '$i=0'
     n=2; if ! (( $n == 1 )); then echo 'not 1'; fi
     n=1; printf "%03d\n" $n
     n=08; (( 10#$n > 7 )) && o base10  # because 08 is an impossible octal
@@ -1646,7 +1691,9 @@ case conversions: `var=vAlUe; o ${var^^}; o "${var,,}"`
     echo {j,h}el{l,}o
 
 ##### parameter expansion
-    file=a.b.c; echo ${file##*.}; echo ${file%.*}
+    echo .hidden | sed "s/^\./※/" # revealed
+    f=f.x; o ${f##*.} # try removing the extension
+    file=.hidden.file.ext; echo "${file%.*} + ${file##*.} = $file"
 
     s='strong string'; o ${s//str/p} # all matches
     ${string/substring/firstMatchReplacement}
@@ -1666,6 +1713,7 @@ case conversions: `var=vAlUe; o ${var^^}; o "${var,,}"`
     DIR=$(realpath "${DIR}")  # resolve its full path if need be
 
 ##### tests
+    [[ a.b =~ \. ]] && echo "there's a ."
     [[ ! $t =~ (y|n) ]] && echo 'good answer'
     t=ha; [[ $t =~ a ]] && echo "there's an a"
     [[ $u ]] && echo "string $u"
@@ -1701,7 +1749,6 @@ case conversions: `var=vAlUe; o ${var^^}; o "${var,,}"`
     gtk-launch --version
     halt -p
     i hier  # detailed description of the filesystem hierarchy
-    openbox --reconfigure
     passwd jo  # then re-login
     ps $(pgrep Xorg)  # shows which tty X is on
     shutdown now
@@ -1709,11 +1756,11 @@ case conversions: `var=vAlUe; o ${var^^}; o "${var,,}"`
     w  # list users and load on system
     whereis <executable>
 
-- `awesomewm`: floating window: `winkey+left_mouse_drag`
 - lsmod(8) show what kernel modules are currently loaded
 - maximum 255 bytes per filename & 4096 per path
 
 ## awesome wm
+- floating window: `winkey+left_mouse_drag`
 - maximized (horizontally or vertically) are indicated by (horizontal or vertical) double arrow, and break tiling
 -`modkey+left_mouse_drag` move
 -`modkey+right_mouse_drag` resize
@@ -1733,6 +1780,79 @@ case conversions: `var=vAlUe; o ${var^^}; o "${var,,}"`
     cpu-x -h
     cpu-x -N
     Openbox Menu > System > CPU-X
+
+## de
+    echo $XDG_CURRENT_DESKTOP
+    openbox --reconfigure
+
+desktop environment
+
+### Plasma
+    Ctrl+Alt+Shift+Del -> exit KDE without saving
+    Ctrl+Alt+Del       -> logout screen
+    Ctrl+Alt+T         -> Konsole
+    Win+PageUp/Down    -> maximises or returns to normal a window
+
+### Xfce
+    xfce4-display-settings &
+    xfce4-panel -r  # reloads
+    xfce4-settings-manager &
+
+- `GTK`
+- `Terminal` (`xfce4-terminal`)
+    - `ctrl+shift+c` = copy
+    - `ctrl+shift+v` = paste
+- `xfwm4-tweaks-settings &` = `Windows Manager Tweaks`
+
+#### Clipman
+- `~/.cache/xfce4/clipman/textsrc` semicolon-separated list
+- clickable `Panel` icon
+
+#### keyboard shortcuts
+- `Alt+F3` = `Application Finder`
+- `Alt+scrollwheel` = `zoom_desktop`
+- `Ctrl+Alt+D` = minimize all
+- `Ctrl+Alt+Del` = `xfce4-session-logout`
+- `Ctrl+Alt+Escape` = `xkill` (right-click abandons)
+- `Ctrl+Alt+L` = `xflock4`
+- `HomePage` = `XF86HomePage` = `exo-open --launch WebBrowser`
+- `Shift+Ctrl+Esc` = `xfce4-taskmanager`
+- `Super+e` = `thunar`
+- `Super+l` seems to paste in the last thing
+- `Applications > Settings > Keyboard > Application Shortcuts` can take a bash script path
+
+xfwm4 - Keyboard Shortcuts
+
+##### windows
+- `Applications > Settings > Window Manager`
+    - `Alt+F9` = minimise
+    - `Alt+F10` = toggle maximise
+    - `F11` = full screen
+    - `super+1` = move to left monitor
+    - `super+2` = move to right monitor
+
+##### workspaces
+- `Ctrl+Alt+Home/End` = move window to left/right workspace
+- `Ctrl+Alt+left/right arrow` = left/right workspace
+- `Ctrl+Fn` = goto workspace n
+
+#### Thunar
+    ~/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
+
+Custom Actions: `~/.config/Thunar/uca.xml`
+
+##### keyboard accelerators
+- `~/.config/Thunar/accels.scm` accelerator map dump
+- `Ctrl+Shift+n` = `create-folder`
+
+#### Xfce Notify Daemon
+    $ABjo/wm/Xfce/notifyd.sh
+    systemctl --user status xfce4-notifyd
+    systemctl --user start xfce4-notifyd
+    systemctl --user stop xfce4-notifyd
+    xfce4-notifyd-config &
+
+no indication of priority - only distinguishing feature of `critical` notifications is their persistence
 
 ## directory sizes as root
     du -shx
@@ -1830,12 +1950,6 @@ if no luck, can also kill the `Xfce Notify Daemon`
     notify-send -u critical "test of critical notification"
     notify-send -t 5000 -u low "low urgency 5s notification"
 
-## Plasma
-    Ctrl+Alt+Shift+Del -> exit KDE without saving
-    Ctrl+Alt+Del       -> logout screen
-    Ctrl+Alt+T         -> Konsole
-    Win+PageUp/Down    -> maximises or returns to normal a window
-
 ## Qt
     qmake -query QT_VERSION
 
@@ -1906,75 +2020,14 @@ if no luck, can also kill the `Xfce Notify Daemon`
 
 XTerm: `resize`
 
-## Xfce
-    xfce4-display-settings &
-    xfce4-panel -r  # reloads
-    xfce4-settings-manager &
-
-- `GTK`
-- `Terminal` (`xfce4-terminal`)
-    - `ctrl+shift+c` = copy
-    - `ctrl+shift+v` = paste
-- `xfwm4-tweaks-settings &` = `Windows Manager Tweaks`
-
-### Clipman
-- `~/.cache/xfce4/clipman/textsrc` semicolon-separated list
-- clickable `Panel` icon
-
-### keyboard shortcuts
-- `Alt+F3` = `Application Finder`
-- `Alt+scrollwheel` = `zoom_desktop`
-- `Ctrl+Alt+D` = minimize all
-- `Ctrl+Alt+Del` = `xfce4-session-logout`
-- `Ctrl+Alt+Escape` = `xkill` (right-click abandons)
-- `Ctrl+Alt+L` = `xflock4`
-- `HomePage` = `XF86HomePage` = `exo-open --launch WebBrowser`
-- `Shift+Ctrl+Esc` = `xfce4-taskmanager`
-- `Super+e` = `thunar`
-- `Super+l` seems to paste in the last thing
-- `Applications > Settings > Keyboard > Application Shortcuts` can take a bash script path
-
-xfwm4 - Keyboard Shortcuts
-
-#### windows
-- `Applications > Settings > Window Manager`
-    - `Alt+F9` = minimise
-    - `Alt+F10` = toggle maximise
-    - `F11` = full screen
-    - `super+1` = move to left monitor
-    - `super+2` = move to right monitor
-
-#### workspaces
-- `Ctrl+Alt+Home/End` = move window to left/right workspace
-- `Ctrl+Alt+left/right arrow` = left/right workspace
-- `Ctrl+Fn` = goto workspace n
-
-### Thunar
-    ~/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
-
-Custom Actions: `~/.config/Thunar/uca.xml`
-
-#### keyboard accelerators
-- `~/.config/Thunar/accels.scm` accelerator map dump
-- `Ctrl+Shift+n` = `create-folder`
-
-### Xfce Notify Daemon
-    $ABjo/wm/Xfce/notifyd.sh
-    systemctl --user status xfce4-notifyd
-    systemctl --user start xfce4-notifyd
-    systemctl --user stop xfce4-notifyd
-    xfce4-notifyd-config &
-
-no indication of priority - only distinguishing feature of `critical` notifications is their persistence
-
 # SystemRescue
     setkmap fr
     startx
 
 # term
-    [ $TERM_PROGRAM == 'WezTerm' ] && o "you're in WezTerm"
     [[ $TERM =~ tmux|xterm ]] && o "you're in tmux or xterm"
     bash $nDrGRs/d-unix-like/r-hackerb9/fonttable/fonttable
+    echo; for f in 'ANSI Regular' Banner Banner3 Big Bloody Colossal Crazy Doh Doom 'Dot Matrix' Electronic Elite Georgia11 Ivrit Nancyj-Improved Nancyj 'Old Banner' Standard 'Star Wars' Univers Varsity Whimsy 3d ; do echo "$f:"; figurine -f "$f.flf" figurine; done  # very pretty
     meow
     sudo fgconsole  # reports tty number
 
@@ -2064,6 +2117,10 @@ no indication of priority - only distinguishing feature of `critical` notificati
 - `$TERM` is set to `rxvt-unicode-256color`
 - `rxvt-unicode`
 - `URxvt.url-launcher`
+
+## WezTerm
+    [ $TERM_PROGRAM == 'WezTerm' ] && o "you're in WezTerm"
+    [[ $WEZTERM_PANE != 0 ]] && o "you're not in the first pane"
 
 # tr
     tr '\n' '~' < <in> | sed 's/~/  /g' [> <out>]  # replace newlines with double spaces
