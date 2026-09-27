@@ -10,7 +10,6 @@ commands here are generic, except for those under the Ubuntu heading, see also `
     dotnet --list-sdks
     info info
     rainbow -h | mo  # nicoulaj/rainbow
-    wcsf=$(wc -l <samplefile>); echo $wcsf
 
 `gucharmap &` (= `Accessories > Character Map`) `> View > By Unicode Block`
 Pipe Viewer
@@ -120,6 +119,17 @@ VBR quality 4 is closer to the original size
 - `S` toggle single
 - `<`/`>` previous/next song
 
+## PipeWire
+    pipewire -h
+    wpctl list
+    wpctl status
+
+### pw-cat
+    pw-cat
+    pw-record -P '{ stream.capture.sink=true }' internal.flac
+
+no options triggers `-h` (= `--help`)
+
 ## PulseAudio
     pgrep -af pulseaudio
     pulseaudio -k  # --kill
@@ -139,6 +149,7 @@ VBR quality 4 is closer to the original size
 # bc
     bc -q
     bc <<< 'scale=2; 3 * 2.004 / 1'  # the final redundant division fixes  scale
+    bc <<< 2*2
 
 - "an arbitrary precision calculator language"
 - command: `scale=n  => results to n decimal places`
@@ -259,18 +270,23 @@ Make (software)
     git extras --version
     gitui
 
-### Git - configurations
-    $ fd -HI -tf ^config$ | xargs rg -l 'remote = gh'  # ripgrep
-    $ find . -wholename '*.git'
-    $ find . -wholename '*.git/config' > gitconfig-all.txt
-    $ find . -wholename '*.gitignore' > gitignore-all.txt
-    $ find . -wholename '*.git/config' | wc -l
-    $ grep -rl --include "config" harriott . > gitconfig-harriott.txt
+### configurations
+    fd -HI -tf ^config$ | xargs rg -l 'remote = gh'  # ripgrep
+    find . -wholename '*.git'
+    find . -wholename '*.git/config' -exec grep fetch {} +
+    find . -wholename '*.git/config' > gitconfig-all.gcfl
+    find . -wholename '*.git/config' | wc -l
+    find . -wholename '*.gitignore' > gitignore-all.txt
+    grep -rl --include "config" harriott . > gitconfig-harriott.txt
 
 #### gitconfig
     r ~/.ssh
 
 `$ABjo/gitconfig` inludes `$misc/CP/gitconfig`
+
+### list files excluding  .git/*
+    find . ! -wholename '*/.git/*' -printf %TY%Tm%Td-%TH:%TM:%.2TS\ %p\\n | sort  # including directories
+    find . -name "*" -type f ! -path '*/.git/*'
 
 ## Ruby - rbenv
     rbenv
@@ -315,20 +331,23 @@ defines variables for `kpathsea`
     sudo systemctl restart fcron.service
     systemctl status fcron.service
 
+`!m(0)` globally mail nowhere
+
 # file contents
     diff <file1> <file2>
     enca -l surfaces
-    tac --help
-    shuf
     sk --ansi -i -c 'rg --color=always --line-number "{}"'
     sort <file> | uniq -d  # prints only duplicate lines
+    tac --help
     wc -l <file>  # counts lines
     xargs < <file_to_return_as_one_line>
 
 - sharkdp/bat
+- SHUF(1)
 - `uniq -c` (`--count`) prefix lines by counts
 
 ## awk
+    awk '!u[$0]++'
     awk '{print $0}' # prints all columns - doesn't work with  OFS
     awk '{print $1}' ORS='\t' <file_with_column_to_print_tsv>
     awk -f script.awk input.txt
@@ -463,6 +482,7 @@ Vim fileencoding utf8 reported as ASCII
 - `[:digit:]`: could `echo '12' | sed 's/[[:digit:]]//'`, but `echo '12' | sed 's/[0-9]//'` is more compact
 
 ### make changes
+    echo 'a/b,' | sed -r 's/([^/]+,)/;\1/g'
     echo -e '1\n2\n3' | sed $'s/.*/\t&/g'  # inserting tabs
     echo "don't forget that" | sed 's/\x27/\"/'
     echo "é" | sed 's/é/e/'
@@ -514,10 +534,7 @@ Vim fileencoding utf8 reported as ASCII
 - `chmod 755 file` - `-rwxr-xr-x` group & others can read
 - `chmod 775 file` - `-rwxrwxr-x` group can write
 - `chmod 777 file` - all can read, write and execute
-- FILE(1)
 - `fsearch &`: `Ctrl+p` = Preferences
-- install(1)
-- `ls **/*` and no variations of that!
 - `lsd`: `-I` (`--ignore-glob`)
 
 ## compressed
@@ -555,6 +572,7 @@ Vim fileencoding utf8 reported as ASCII
 `-L`, `--dereference`
 
 ## digests
+    b2sum --help
     md5sum -c <md5file>
     rhash -a --bsd <somefile>
     rhash -h  # --help
@@ -571,23 +589,24 @@ Vim fileencoding utf8 reported as ASCII
 
 ## fd
     $Drpbx/search/searches.md
-    fd -tl -HL -X rm  # removes dead links
+    fd -te -X rm  # delete empty files
     fd -tf -e dw -x cat | wc -w  # recursively count all words in dokuwiki files
     fd -tf stderr.txt -X rm
+    fd -tl -HL -X rm  # removes dead links
     mapfile -t hf < <(fd -H '^\.'); o ${hf[@]} # hidden files
+    [[ -z $(fd -te dir_to_empty) ]] && rm -r dir_to_empty/*  # handles spaces in sub-nodes
 
 ## find
     find $PWD -name <file>  # gets full path
     find -cmin 1  # files whos status changed in last minute
     find -exec stat -c '%U %G %n' {} +
     find -regex ".*a.*\|.*b.*"
-    find . ! -wholename '*/.git/*' -printf %TY%Tm%Td-%TH:%TM:%.2TS\ %p\\n | sort  # excluding contents of  .git
     find . -maxdepth 1 -mindepth 1 -type f -name "*"  # those in working directory
-    find . -name "*" -type f ! -path '*/.git/*'
     find . -name '*.txt' ! -name 'build*'  # excluding build*
     find . -name '.*'  # hidden files only
     find . -newer oldFile
     find . -path '*exclude_path*' -prune -o -name 'partial_filename*' -print
+    find . -type f -empty -print -delete
     find . -type f -exec du -h {} + | sort -hr > descendingSizes.txt
     find . -xtype l -delete  # quickly removes broken symlinks
 
@@ -623,19 +642,7 @@ find(1)
 #### including hidden
     find . | wc -l  # very fast in $Drpbx
     find . -type f | sed 's/\.\/.*\.//' | sort | uniq -c  # by extension
-
-### ls
-    dircolors  # LS_COLORS=...
-    dircolors --help
-    dircolors --version
-    dircolors -p  # --print-database
-    ls -l  # show permissions, owners, exact sizes, and date-time
-
-- `-d` (= `--directory`)
-- `-A` (= `--almost-all`) exclude `.` and `..`
-- `-R` (= `--recursive`) delve into subdirectory contents
-- `-t` sort, newest first
-- ls(1)
+    find -L . | wc -l  # following symlinks
 
 ### mlocate
     locate .asc | grep '\.asc$'
@@ -700,6 +707,21 @@ hard link
 - `-s` (`--symbolic`) not hard
 - ln(1)
 
+## ls
+    dircolors  # LS_COLORS=...
+    dircolors --help
+    dircolors --version
+    dircolors -p  # --print-database
+    ls -l  # show permissions, owners, exact sizes, and date-time
+
+`ls **/*` and no variations of that!
+
+### options
+- `-d` (= `--directory`)
+- `-A` (= `--almost-all`) exclude `.` and `..`
+- `-R` (= `--recursive`) delve into subdirectory contents
+- `-t` sort, newest first
+
 ## privileges
     directory user group other
     d         rwx  rwx   rwx
@@ -717,7 +739,8 @@ hard link
     --- 0
 
 ## rm
-rm(1)
+- `-f` (= `--force`) ignore nonexistent files, never prompt
+- rm(1)
 
 ### with Pipe Viewer
 1. `find <directory> | wc -l  # gets the <filecount>`
@@ -825,22 +848,23 @@ rm(1)
     fortune | cowsay | lolcat -a
     fortune | cowsay | rainbow
 
+# fuzzy
+    find . -type f | fzy  # selecta
+
+## fzf
+```bash
+Alt+c  # fuzzy change directory
+cat $(fzf)
+cd [directory/][fuzzy_pattern]**<tab>
+Ctrl+r  # fuzzy select command from history
+Ctrl+t  # fuzzy paste file path into command line
+kill -9 <tab>
+ls -l $(fzf -m)
+unalias **<tab>
+```
+
 # get at root on tty2
     Ctrl+Alt+F2 > root + pw
-
-# GNU Privacy Guard
-    echo "encrypt me this" | gpg -ase -r jharr
-    gpg --full-gen-key
-    gpg --refresh-keys  # updates from a keyserver
-
-fingerprint: `xxxx xxxx xxxx xxxx xxxx  xxxx xxxx xxxx xxxx xxxx`
-
-## keybox
-    gpg --delete-key <anID>
-    gpg --import my_private_key.asc
-    gpg --import my_public_key.asc
-    gpg -ao private.asc --export-secret-keys jh
-    kbxutil ~/.gnupg/pubring.kbx | moar  # for a more detailed exploration
 
 # hw
     lsusb; lsusb -t
@@ -1210,7 +1234,6 @@ list open files
     playerctl stop
 
 # networking
-    arp-scan -lx  # lists subnet hosts
     bluetoothctl -- devices
     dhcpcd -k [interface]  # --release
     iwgetid wlan0  # current SSID
@@ -1218,9 +1241,9 @@ list open files
     sudo lsof -i -P -n | grep LISTEN  # to see the listening ports
 
 ## devices
-    arp-scan --localnet  # reports MAC addresses on network
-    ip link
-    networkctl list
+    networkctl list  # of machine
+
+`arp-scan -lx` (`--localnet --plain`) compact internal IP's of other MAC's on LAN
 
 ## hostname
     hostname
@@ -1230,10 +1253,9 @@ list open files
 ## iproute2
     ip neigh  # subnet hosts
 
+- if connection problems, `sudo ip l set wlan0 down; sudo ip l set wlan0 up`
 - `ip l` (`link show`) lists machine's ethernet devices
-- `ip r` (`route show`) compactly shows my internal ip address
-
-if connection problems, `sudo ip l set wlan0 down; sudo ip l set wlan0 up`
+- `ip r` (`route show`) compactly shows my internal IP address
 
 ### address show
 - `ip a`
@@ -1339,6 +1361,23 @@ advantage over `iwctl` is auto-connection
 
 pass(1)
 
+# PGP
+    pgpdump -h
+
+## GnuPG
+    echo "encrypt me this" | gpg -ase -r jharr
+    gpg --full-gen-key
+
+- fingerprint: `xxxx xxxx xxxx xxxx xxxx  xxxx xxxx xxxx xxxx xxxx`
+- GNU Privacy Guard
+
+### keybox
+    gpg --delete-key <anID>
+    gpg --import my_private_key.asc
+    gpg --import my_public_key.asc
+    gpg -ao private.asc --export-secret-keys jh
+    kbxutil ~/.gnupg/pubring.kbx | moar  # for a more detailed exploration
+
 # processes
     hyperfine --runs 5 'sleep 0.3'
     lsof -i
@@ -1368,6 +1407,10 @@ niceness: `-20` = highest priority, `19` = lowest
 - `dc` desk calculator (reverse-Polish)
 - `echo $SHELL` reveals flavour
 - `fc` "fix command"
+
+## coreutils
+- GNU Core Utilities
+- `type -a echo` reveals also `/usr/bin/echo` for which `man echo`
 
 ## Bash
     $misc/linux/QR/script.sh
@@ -1402,6 +1445,7 @@ esac
 
 - BASH(1)
 - command substitution `$(...)`
+- `local v=1` locally redefines `$v`
 - in a script, `"~"` isn't expanded - use `"$HOME`
 
 ### aliases
@@ -1411,7 +1455,14 @@ esac
 
 inside script: `shopt -s expand_aliases; alias a='a'`
 
-### Atuin
+### ble.sh
+    ble summary  # reports even when not initialised
+
+- `Ctrl-c` changed from `SIGINT` to quit Vim insert mode
+- Bash Line Editor
+- eg `grep --<Tab>` manual-reading superpower!
+
+#### Atuin
     atuin
     atuin stats
     atuin stats last friday
@@ -1421,12 +1472,6 @@ inside script: `shopt -s expand_aliases; alias a='a'`
 
 SQLite database of commands
 
-### ble.sh
-    ble summary  # reports even when not initialised
-
-- `Ctrl-c` changed from `SIGINT` to quit Vim insert mode
-- Bash Line Editor
-
 #### Vim mode
     ble-bind -P  # --print  the keybinds
 
@@ -1434,6 +1479,19 @@ SQLite database of commands
 - insert-mode: `Ctrl-x Ctrl-v` = `display-shell-version`
 - normal-mode: `K` = `command-help`
 - once begun, `f1` = `command-help`
+
+### builtin - echo
+    echo "~ stays ~ in double quotes, it's unexpanded to $HOME"
+    help echo
+
+`-n` no trailing newline
+
+#### backslash escapes
+    echo -e "\\t" word_after_tab
+    echo -e '\t' word_after_tab
+    echo $'aa\'bb'
+
+`-E`  # (default) no interpretation
 
 ### builtin - shopt
     shopt
@@ -1463,28 +1521,21 @@ SQLite database of commands
     [[ "hello" =~ "ll" ]] && o ll
     v=value; [[ $v =~ val|ue ]] && echo matched
 
-### echo
-    echo "~ stays ~ in double quotes, it's unexpanded to $HOME"
-
-`-n` no trailing newline
-
-#### backslash escapes
-    echo -e "\\t" word_after_tab
-    echo -e '\t' word_after_tab
-    echo $'aa\'bb'
-
-`-E`  # (default) no interpretation
-
 ### file manage
     echo */  # lists directories
     echo <file>
     for f in *; do mv $f ${f:2}; done
     man basename
     man -h ls
-    mktemp temp-XXX  # can add more X's, touch's a randomised filename
     pushd ~/some_path; pushd /another_path; popd; popd
     >f  # creates/empties file  f
     >>f  # creates file  f  if necessary
+
+#### mktemp
+- `mktemp -d` makes `/tmp/tmp.xxxxxxxxxx/`
+- `mktemp temp-XXX`
+    - can add more X's, which get randomised
+    - touch's a randomised filename in `$PWD`
 
 #### find
     find . -maxdepth 1 -mindepth 1 -type d -name "*"  # those in working directory
@@ -1503,6 +1554,30 @@ SQLite database of commands
     [ -d $undefined ] && echo 'Watch out: $undefined is thought to be there!' # prefix with  [ ! -z $undefined ] &&
     [ -d "$d" ] && echo "directory $d is there"
     [[ -d "$d" && ! -L "$d" ]] && echo "It's a directory and not a symbolic link"
+
+### flyline
+    flyline --enable-easter-eggs  # eg animation of pending python command
+    flyline --version
+    flyline key list
+    flyline perf
+    flyline time
+
+- `Alt/Ctrl+Backspace/Delete` deletes one chunk/word back/forward
+- `Alt/Ctrl+R` cancelled/issued command fuzzy histroty
+- colourful & informative fuzzy history
+- disables `Alt+c` of `fzf`
+- fuzzy command suggestion as type
+
+#### configure
+    flyline editor
+    flyline history
+    flyline mouse
+    flyline settings
+    flyline suggestions
+
+#### help
+- `flyline -h` compact
+- `flyline help` (= `--help`) more readable
 
 ### functions
     "$@" = "$1" "$2" ...
@@ -1642,6 +1717,7 @@ substitute user identity
 ##### mapfile
     mapfile --help
     readarray --help
+    rg 'mapfile -t' $ITcore
 
 #### integers
     (( $1 == 1 || $1 == 2 )) && echo "number 1 or 2"
@@ -1705,7 +1781,7 @@ case conversions: `var=vAlUe; o ${var^^}; o "${var,,}"`
     s=12345; echo ${s::-2}; echo ${s: -2}
     t=lkj; echo ${t:0:${#t}-1}
 
-    name=polish.ostrich.racing.champion; o ${name#*.}; o ${name##*.}; o ${name%%.*}; o ${name%.*}
+    name=polish.ostrich.racing.champion; o "${name%%.*}-${name%.*}-${name#*.}-${name##*.}"
     u=.git.git.git; o ${u%.git}
 
 ##### script's name
@@ -1756,6 +1832,7 @@ case conversions: `var=vAlUe; o ${var^^}; o "${var,,}"`
     w  # list users and load on system
     whereis <executable>
 
+- `/tmp/` gets cleaned out
 - lsmod(8) show what kernel modules are currently loaded
 - maximum 255 bytes per filename & 4096 per path
 
@@ -1809,6 +1886,8 @@ desktop environment
 - clickable `Panel` icon
 
 #### keyboard shortcuts
+    xfce4-keyboard-settings
+
 - `Alt+F3` = `Application Finder`
 - `Alt+scrollwheel` = `zoom_desktop`
 - `Ctrl+Alt+D` = minimize all
@@ -1827,6 +1906,7 @@ xfwm4 - Keyboard Shortcuts
 - `Applications > Settings > Window Manager`
     - `Alt+F9` = minimise
     - `Alt+F10` = toggle maximise
+    - `Alt+Space` = window menu, eg to toggle off always on top
     - `F11` = full screen
     - `super+1` = move to left monitor
     - `super+2` = move to right monitor
@@ -1847,6 +1927,9 @@ Custom Actions: `~/.config/Thunar/uca.xml`
 
 #### Xfce Notify Daemon
     $ABjo/wm/Xfce/notifyd.sh
+    pgrep xfce4-notifyd
+    pkill xfce4-notifyd
+    systemctl --user restart xfce4-notifyd  # kills its own notifications
     systemctl --user status xfce4-notifyd
     systemctl --user start xfce4-notifyd
     systemctl --user stop xfce4-notifyd
@@ -1926,6 +2009,7 @@ no indication of priority - only distinguishing feature of `critical` notificati
     dunstify --help
     dunstify -u critical "Read this now!"
     dunstify "First test message."; dunstify "Second test message, which is longer."
+    systemctl --user status dunst
 
 `dunstrc` allows tweaks that aren't available with `Xfce Notify Daemon`
 
@@ -2282,6 +2366,7 @@ only see top of page in neovim terminal
     :Man wget
     wget -kr -A.zip https://url-to-webpage-with-pdfs/  # works from that page
     wget -r -A.pdf http://url-to-webpage-with-pdfs/  # works recursively from root page
+    wget <url> -O <local_fikle> -q --show-progress
 
 - `-E` (`--adjust-extension`)
 - `-O file` (`--output-document=file`)
@@ -2346,4 +2431,10 @@ only see top of page in neovim terminal
 - `T` (= `NEW_TAB`) re-opens current tab, new
 - `{` (= `PREV_TAB`)
 - `}` (= `NEXT_TAB`)
+
+# wc
+    wcsf=$(wc -l <samplefile>); echo $wcsf
+
+- prints newline, word, and byte counts for each file
+    - `-l` (= `--lines`) prints only the newline counts
 
