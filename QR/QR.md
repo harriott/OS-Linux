@@ -4,12 +4,11 @@ vim: nospell:
 
 commands here are generic, except for those under the Ubuntu heading, see also `$OSAB/QR`
 
-    $ITref/unix-like/usr_lib_X11_rgb.txt  # colours
+    $ITref/Ul/usr_lib_X11_rgb.txt  # colours
     $mull
     dotnet --list-runtimes
     dotnet --list-sdks
     info info
-    rainbow -h | mo  # nicoulaj/rainbow
 
 `gucharmap &` (= `Accessories > Character Map`) `> View > By Unicode Block`
 Pipe Viewer
@@ -186,6 +185,12 @@ no options triggers `-h` (= `--help`)
     date +%y%m%d-%H%M
     date +%y%m%d-%H%M%S
     date +%Y-%m-%d -d 'now -1 year 1 day'
+    date -d 'Sat, 03 Nov 2018 18:50:37 -0700 (PDT)' '+%F %T %z %a'
+    date -d 'Sat, 10 May 2025 18:01:29 +0200 (CEST)' '+%F %T %z %a'
+    date -d 'Tue, 15 Sep 2026 07:45:37 -0400 (EDT)' '+%F %T %z %a'
+    date -d 'Fri, 9 Nov 2018 17:52:22 +0100' '+%F %T %z %a'
+    date -d 'Wed, 25 May 2022 07:59:55 +0000 (UTC)' '+%F %T %z %a'
+    date -d 'Wed, 26 Nov 2025 02:01:39 -0500 (EST)' '+%F %T %z %a'
     date -d @<unixTimeToConvert>
     date -R
     date -r <fileToGetDateOf>
@@ -234,6 +239,7 @@ zathura man page
     :info
 
 - `<tab>` toggles Outline view
+- `^r` toggle recolor (= grayscale & invert)
 - `f11` toggle fullscreen
 - `r` rotate by 90 degrees
 - `R` reload document
@@ -249,6 +255,8 @@ zathura man page
     emacs -nw  # in terminal
     emacs -nw --debug-init
 
+`n ~/.emacs_autosave/` (`$misc/CP/Emacs/init.el`)
+
 ## view movements
     alt-v => scroll up
     ctrl-l => centre text in view
@@ -260,7 +268,7 @@ zathura man page
     echo 'linuxhint.com' | base64
     git diff <file1> <file2>
     rm -r ~/.cargo/registry/cache  # will be rebuilt
-    ~\.pyenv
+    ~/.pyenv
 
 Make (software)
 
@@ -336,6 +344,7 @@ defines variables for `kpathsea`
 # file contents
     diff <file1> <file2>
     enca -l surfaces
+    head -n5 <file>
     sk --ansi -i -c 'rg --color=always --line-number "{}"'
     sort <file> | uniq -d  # prints only duplicate lines
     tac --help
@@ -406,6 +415,14 @@ defines variables for `kpathsea`
     awk '{if(NR>=2){print}}' <file>  # lines from 2
     awk -i inplace 'FNR==1 {print tolower($0)}' $1  # only line 1
 
+## csplit
+    csplit <file_to_split> '<pattern>' ['{<repeat>}']
+
+- `--suppress-matched` = don't include the line of the `<pattern>`
+- `-z` (= `--elide-empty-files`) = scrap empty files
+- `<pattern>` can be `/<regex>/`
+- `<repeat>` can split up to `n` lines or `*` = all
+
 ## file
     fd -Itf -x file
 
@@ -438,6 +455,10 @@ Vim fileencoding utf8 reported as ASCII
 - `v`  toggle vertical
 - `-`/`+` decrease/increase size
 
+## mcat
+- better in `WezTerm`, but obviated by `Yazi`
+- `mcat .` launches a recursive file picker
+
 ## non-printing characters
     cat -A <file> # --show-all  non-printing stuff
 
@@ -456,7 +477,7 @@ Vim fileencoding utf8 reported as ASCII
 - CRLF -> LF
 
 ## sed
-    $ITref/unix-like/sed/learnsed.sed
+    $ITref/Ul/sed/learnsed.sed
     $cIThul/sed
     :Man sed
     echo "blia blib bou blf" | sed -E 's/bl(ia|f)//g'
@@ -610,7 +631,11 @@ Vim fileencoding utf8 reported as ASCII
     find . -type f -exec du -h {} + | sort -hr > descendingSizes.txt
     find . -xtype l -delete  # quickly removes broken symlinks
 
-find(1)
+- `-L` follow symbolic links
+- `-type d` directory
+- `-type f` file
+- `-type l` symlink (obviated by `-L`)
+- find(1)
 
 ## GIO
     gio help
@@ -659,6 +684,7 @@ find(1)
     sudo dust -x /  # graphical size representation of root, not descending into mounts
 
 #### listed
+    ls -1Rhs | sed -e "s/^ *//" | grep "^[0-9]" | sort -h | head -n5  # neat recursive list of smallest
     ls -1Rhs | sed -e "s/^ *//" | grep "^[0-9]" | sort -hr | head -n50  # neat recursive list of largest
 
 ##### du
@@ -690,6 +716,11 @@ find(1)
     [[ -L $s ]] && echo 'symlink exists'
     find . -type l -ls  # recursively list all symlinks with their references
     readlink $s  # returns referenced node
+
+#### self-referring symlinks
+    find -L . -printf '' 2>&1  # reports any
+
+some directory ln's in `$OSAB/nodes-set/jo-1-encoding.sh` if repeated, but I can't minimally reproduce this
 
 ### tree
     tree -a  # include hidden
@@ -1364,6 +1395,8 @@ pass(1)
 # PGP
     pgpdump -h
 
+`sq network wkd search ...` via web key directories
+
 ## GnuPG
     echo "encrypt me this" | gpg -ase -r jharr
     gpg --full-gen-key
@@ -1403,6 +1436,12 @@ niceness: `-20` = highest priority, `19` = lowest
     i pgrep
     pgrep <aprogram>  # reports it's process id
 
+# rainbow
+    echo "blue cyan green magenta red yellow" | rainbow -b blue -c cyan -g green -m magenta -r red -y yellow
+    echo "bold faint italic underline" | rainbow --bold=bold --faint=faint --italic=italic --underline=underline
+    rainbow -h | mo
+    whereis rainbow
+
 # shell
 - `dc` desk calculator (reverse-Polish)
 - `echo $SHELL` reveals flavour
@@ -1414,9 +1453,9 @@ niceness: `-20` = highest priority, `19` = lowest
 
 ## Bash
     $misc/linux/QR/script.sh
-    $ITref/unix-like/LearnBash.sh
-    $culLB/colours
-    $culLB/Scratch0.sh
+    $ITref/Ul/LearnBash.sh
+    $cLBa/colours
+    $cLBa/Scratch0.sh
     /etc/profile
     bash --help
     bash --version
@@ -1434,7 +1473,7 @@ niceness: `-20` = highest priority, `19` = lowest
     read a b; echo $a $b
     tail -1 <file>  # last line
     tail +3 <file>  # cat from line 3
-    za $ITref/unix-like/linux/GNUOS/bash.pdf
+    za $ITref/Ul/linux/GNUOS/bash.pdf
 
 ```bash
 case 'one' in
@@ -1489,7 +1528,6 @@ SQLite database of commands
 #### backslash escapes
     echo -e "\\t" word_after_tab
     echo -e '\t' word_after_tab
-    echo $'aa\'bb'
 
 `-E`  # (default) no interpretation
 
@@ -1748,7 +1786,6 @@ substitute user identity
     o lkj | rev | cut -c 2- | rev
     o ljk | sed 's/.$//'
     s='long'; o ${#s} # length
-    qs=$'quote\'*star'; o "$qs"
     s=12345; echo $s | awk '{print substr($1,length($1)-2) }'
     s=12345; echo $s | cut -c $((${#s}-2))-
     s=yes; s+=no; o $s
@@ -1761,6 +1798,12 @@ case conversions: `var=vAlUe; o ${var^^}; o "${var,,}"`
 ##### $PATH
     echo "${PATH//:/$'\n'}"
     echo "$PATH" | tr ':' '\n'
+
+##### ANSI-C quoting
+    echo $'aa\'bb'
+    qs=$'quote\'*star'; o "$qs"
+
+not with `flyline`
 
 ##### brace expansion
     echo {1,2,3}-go
@@ -2110,7 +2153,7 @@ XTerm: `resize`
 
 # term
     [[ $TERM =~ tmux|xterm ]] && o "you're in tmux or xterm"
-    bash $nDrGRs/d-unix-like/r-hackerb9/fonttable/fonttable
+    bash $nDrGRs/d-Ul/r-hackerb9/fonttable/fonttable
     echo; for f in 'ANSI Regular' Banner Banner3 Big Bloody Colossal Crazy Doh Doom 'Dot Matrix' Electronic Elite Georgia11 Ivrit Nancyj-Improved Nancyj 'Old Banner' Standard 'Star Wars' Univers Varsity Whimsy 3d ; do echo "$f:"; figurine -f "$f.flf" figurine; done  # very pretty
     meow
     sudo fgconsole  # reports tty number
@@ -2163,24 +2206,24 @@ XTerm: `resize`
     pgrep tmux -l
 
 ### $ tmux ...
-    $culL/term/tmux_test.conf
-    tmux -V              # report version
-    tmux a               # attach
-    tmux a -t myname     # attach to session myname
+    $coLi/term/tmux_test.conf
+    tmux -V                   # report version
+    tmux a                    # attach
+    tmux a -t myname          # attach to session myname
     tmux detach
-    tmux kill-server     # good for resetting
-    tmux kill-session -a # kills all but current session
+    tmux kill-server          # good for resetting
+    tmux kill-session -a      # kills all but current session
     tmux list-keys | grep '~'
     tmux list-keys | mo
-    tmux ls              # list sessions
-    tmux lsk -Na         # includes my rebinds
-    tmux send ls enter  # (send-keys) ls  in the currently active pane
-    tmux show -g prefix  # (show-options)
-    tmux show -s   # server
+    tmux ls                   # list sessions
+    tmux lsk -Na              # includes my rebinds
+    tmux send ls enter        # (send-keys) ls  in the currently active pane
+    tmux show -g prefix       # (show-options)
+    tmux show -s              # server
 
 ### internal commands
-    :bind  # alias for  bind-key
-    :choose-tree  # put a pane into tree mode, can kill and select
+    :bind                   # alias for  bind-key
+    :choose-tree            # put a pane into tree mode, can kill and select
     :set synchronize-panes  # (set-option)
 
 #### join-pane
@@ -2261,14 +2304,11 @@ https://packages.ubuntu.com/
 
 # WAN
     dig harriott.github.io
-    find ~/Dropbox/ ! -user $USER  # rapidly finds anything that would trigger  /tmp/tmp*
     fping -h
     gping google.com
     if wget -q --spider google.com; then echo online; fi
     ping -c 3 1.1.1.1  # CloudFlare's DNS
     pkill radio; radio -K  # quit & kill instances of  radio-active
-
-avoid Dropbox flexible file names: `fd -u '"|\*|:|<|>|\?|\\|\|'`
 
 ## Carburetor
     flatpak info io.frama.tractor.carburetor
@@ -2291,6 +2331,11 @@ only see top of page in neovim terminal
 - `v` toggles select
 - `y` yank to clipboard
 - vim-like
+
+## Dropbox
+    find ~/Dropbox/ ! -user $USER  # rapidly finds anything that would trigger  /tmp/tmp*
+
+avoid Dropbox flexible file names: `fd -u '"|\*|:|<|>|\?|\\|\|'`
 
 ## email - clm
     $OSL/nodes/bashrc-clm

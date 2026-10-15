@@ -40,5 +40,5 @@ vim: fdl=3:
 
 ### sources
 1. `/usr/lib/python3.14/site-packages/ranger/data/scope.sh` = `/usr/share/doc/ranger/config/scope.sh`
-2. `$nDrGRs/d-unix-like/r-ranger-ranger/ranger/data/scope.sh` latest, not yet Version'd, but last modification "Mar 5, 2025"
+2. `$nDrGRs/d-Ul/r-ranger-ranger/ranger/data/scope.sh` latest, not yet Version'd, but last modification "Mar 5, 2025"
 

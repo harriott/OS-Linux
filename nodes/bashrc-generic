@@ -39,7 +39,7 @@ up(){
 } # move up [n] directories
 
 #=> colours
-[ $myDrA ] && source $ITccl/unix-linux/xcol.sh
+[ $myDrA ] && source $ITccl/Ul-linux/xcol.sh
 
 #==> tput foreground
 # inspired by nachoparker

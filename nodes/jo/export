@@ -54,15 +54,20 @@ fi
 #  $MSn/WSL/bash_profile
 #  $ABno/Bash/export-Arch
 
-export ITcop=$Drpbx/IT/copied  # $ITcop - needed resources
 export ITmore=$Drpbx/IT/more
     export ITmCP=$ITmore/CP  # $ITmCP
     export ITmUL=$ITmore/UnixLike
-        export ITmULl=$ITmore/UnixLike/linux
-            export ITmULlA=$ITmore/UnixLike/linux/Arch  # $ITmULlA
+    export ITmUl=$ITmore/Ul
+        export ITmUlL=$ITmUl/Linux
+            export ITmUlLA=$ITmUlL/Arch  # $ITmUlLA
 export ITsto=$Drpbx/IT/storage  # $ITsto/diskUsage.build
 export DrThb=$Drpbx/Thb  # $DrThb
 export ulLAhml="$Drpbx/dev/ulLA-hml"  # unix-like Linux Arch huge machine log  $ulLAhml
+
+#===> IT/copied-
+export ITcopCP=$Drpbx/IT/copied-CP  # $ITcopCP
+export ITcopfMSW=$Drpbx/IT/copied-forMSwin  # $ITcopfMSW
+export ITcopUl=$Drpbx/IT/copied-Ul  # $ITcopUl
 
 #===> rooting on  $DrJo
 # $DrJo  defined in
@@ -133,12 +138,12 @@ export vimfiles=$onGH/vimfiles
     export vfv="$vimfiles/vim"  # $vfv
     export vfvp="$vimfiles/repos-packs"  # $vfvp
 
-#====> rooting on $culL
-# $culL  defined in
+#====> rooting on $coLi
+# $coLi  defined in
 #  $MSn/WSL/bash_profile
 #  $ABno/Bash/export-Arch
 
-export lclm=$culL/clm  # $lclm  linux command-line mail
+export lclm=$coLi/clm  # $lclm  linux command-line mail
 
 #===> rooting on  copied
 export cOT="$Drpbx/copied/OutThere" # $cOT
