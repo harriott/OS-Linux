@@ -4,13 +4,13 @@ vim: nospell:
 
 commands here are generic, except for those under the Ubuntu heading, see also `$OSAB/QR`
 
-    $ITref/Ul/usr_lib_X11_rgb.txt  # colours
+    $IrUl/usr_lib_X11_rgb.txt  # colours
     $mull
     dotnet --list-runtimes
     dotnet --list-sdks
     info info
 
-`gucharmap &` (= `Accessories > Character Map`) `> View > By Unicode Block`
+- `gucharmap &` (= `Accessories > Character Map`) `> View > By Unicode Block`
 Pipe Viewer
 
 # audio
@@ -65,20 +65,6 @@ Pipe Viewer
 ### media
 - can play: `mka`, `ogg`, `opus`
 - can't play: `m4a`, `oma`, `omv`, `rmj`, `wma`
-
-## convert
-    f=sox.flac; ffi $f -c:a libvorbis -aq 4 ${f%.*}.ogg
-    for f in *.flac; do ffi "$f" -c:a libvorbis -aq 4 "${f%.*}.ogg" ; done
-    for f in *.oma; do ffi "$f" -c:a libvorbis "${f%.*}.ogg" ; done  # at default VBR quality 3
-    for f in *.rmj; do ffi "$f" -c:a libvorbis -aq 4 "${f%.*}.ogg" ; done
-    for f in *.wma; do ffi "$f" -c:a libvorbis -aq 4 "${f%.*}.ogg" ; done
-    for f in *.wav; do ffi "$f" -c:a libvorbis -aq 4 "${f%.*}.ogg"; rm "$f"; done
-    for f in *; do ffi "$f" -b:a 128K -vn "${f%.*}.mp3" ; done
-
-### m4a
-    for f in *.m4a; do ffi "$f" -c:a libvorbis -aq 4 "${f%.*}.ogg" ; done
-
-VBR quality 4 is closer to the original size
 
 ## gst123
     gst123 -h  # --help
@@ -296,18 +282,28 @@ Make (software)
     find . ! -wholename '*/.git/*' -printf %TY%Tm%Td-%TH:%TM:%.2TS\ %p\\n | sort  # including directories
     find . -name "*" -type f ! -path '*/.git/*'
 
+## multimedia
+    ffprobe -i <avfile> -show_format -v quiet | sed -n 's/duration=//p'  # fractional seconds
+    mediainfo <avfile> | grep Encoded
+    mediainfo <avfile> | grep Title
+
 ## Ruby - rbenv
     rbenv
-    rbenv global
-    rbenv global 4.0.5
     rbenv help
-    rbenv help global
-    rbenv help versions
-    rbenv install 4  # installs latest major version
     rbenv local
-    rbenv uninstall 4.0.5
     rbenv rehash  # gets the shim for a new gem
     ruby-build --list
+
+### global
+    rbenv global
+    rbenv global 4.0.7
+    rbenv help global
+
+### versions
+    rbenv help versions
+    rbenv install 4  # installs latest major version
+    rbenv uninstall 4.0.5
+    rbenv versions
 
 ## TeX
     pdfjam --help
@@ -477,7 +473,7 @@ Vim fileencoding utf8 reported as ASCII
 - CRLF -> LF
 
 ## sed
-    $ITref/Ul/sed/learnsed.sed
+    $IrUl/sed/learnsed.sed
     $cIThul/sed
     :Man sed
     echo "blia blib bou blf" | sed -E 's/bl(ia|f)//g'
@@ -539,7 +535,7 @@ Vim fileencoding utf8 reported as ASCII
     sed -n '2,$p' <file>  # prints from the 2nd line
 
 # file manage
-    $nDrGRs/unix/ranger-ranger
+    $GRs/unix/ranger-ranger
     fuseiso <ISO_image> <mountDirectory>
     mkdir -p  # --parents = make parent directories as needed (no error if existing)
     nnn -V
@@ -557,6 +553,43 @@ Vim fileencoding utf8 reported as ASCII
 - `chmod 777 file` - all can read, write and execute
 - `fsearch &`: `Ctrl+p` = Preferences
 - `lsd`: `-I` (`--ignore-glob`)
+
+## broot
+    broot --help
+
+### br
+    br
+    br --show-root-fs
+    br -c :count
+    br -c :fs  # mounted filesystems
+    br -c :ss  # sort (directories) by size
+
+`br -w` (= `br --whale-spotting`) highly useful
+
+### verbs - keys
+    alt+enter => quit to directory
+    alt+h => toggle hidden
+    alt+i => toggle .[git]ignore
+    alt/ctrl+up => tree root a step up
+    ctrl+d/u => page down/up
+    ctrl+e => edit
+    ctrl+q => quit
+    Esc => back out
+    F1 => help
+    F5 => refresh
+
+#### panels
+    alt/ctrl+left/right => panels
+    ctrl+p => spawn panel right
+
+### verbs - shortcuts
+- broot searches for the verb as you type
+- can prefix with `<space>` instead of `:`
+- `:gtr` go to git root
+- `:h` toggle hidden
+- `:q` quit
+- `:toggle_preview` ain't much
+- `?` help
 
 ## compressed
     :Man gzip
@@ -714,13 +747,14 @@ Vim fileencoding utf8 reported as ASCII
 
 ### symlinks
     [[ -L $s ]] && echo 'symlink exists'
+    find . -type l -exec eza -adl {} +
     find . -type l -ls  # recursively list all symlinks with their references
     readlink $s  # returns referenced node
 
 #### self-referring symlinks
     find -L . -printf '' 2>&1  # reports any
 
-some directory ln's in `$OSAB/nodes-set/jo-1-encoding.sh` if repeated, but I can't minimally reproduce this
+some directory ln's in `$ABno-set/jo-1-encoding.sh` if repeated, but I can't minimally reproduce this
 
 ### tree
     tree -a  # include hidden
@@ -804,6 +838,7 @@ hard link
 - `-V` (`--version`)
 
 #### for system files
+- `-@=2` (= `--modify-window=2`) 2s mod-time accuracy
 - `-A` (`--acls`) keep ACLs, implies `-p`
 - `-a` (`--archive` = `-Dgloprt`, no `-A`, `-H`, `-X`) handles symlinks with no reference
     - `-D` (`--devices --specials`)
@@ -898,6 +933,7 @@ unalias **<tab>
     Ctrl+Alt+F2 > root + pw
 
 # hw
+    lsusb | grep Bluetooth
     lsusb; lsusb -t
     sensors
     solaar show
@@ -1245,9 +1281,6 @@ No refresh of directories...
 list open files
 
 # multimedia
-    ffprobe -i <avfile> -show_format -v quiet | sed -n 's/duration=//p'  # fractional seconds
-    mediainfo <avfile> | grep Encoded
-    mediainfo <avfile> | grep Title
     vlc -I ncurses
 
 ## mpv
@@ -1264,6 +1297,10 @@ list open files
     playerctl status
     playerctl stop
 
+# MX Linux - windows
+- `Alt+arrow` toggles various positons
+- can't find the keybinding to maximise
+
 # networking
     bluetoothctl -- devices
     dhcpcd -k [interface]  # --release
@@ -1277,9 +1314,11 @@ list open files
 `arp-scan -lx` (`--localnet --plain`) compact internal IP's of other MAC's on LAN
 
 ## hostname
-    hostname
     hostnamectl
     uname -n  # hostname
+
+- `hostname -?`  (= `--help`)
+- `hostname -f` (= `--fqdn` = `--long`)
 
 ## iproute2
     ip neigh  # subnet hosts
@@ -1300,10 +1339,10 @@ list open files
     systemctl status iwd.service
 
 ### iwctl
-    man iwctl
     iwctl device list  # shows MAC address
     iwctl known-networks list
     iwctl station wlan0 get-networks  # shows if  wlan0  is connected to one
+    man iwctl
 
 requires a `DHCP` client to get an IP address
 
@@ -1447,13 +1486,9 @@ niceness: `-20` = highest priority, `19` = lowest
 - `echo $SHELL` reveals flavour
 - `fc` "fix command"
 
-## coreutils
-- GNU Core Utilities
-- `type -a echo` reveals also `/usr/bin/echo` for which `man echo`
-
 ## Bash
     $misc/linux/QR/script.sh
-    $ITref/Ul/LearnBash.sh
+    $IrUl/LearnBash.sh
     $cLBa/colours
     $cLBa/Scratch0.sh
     /etc/profile
@@ -1473,7 +1508,7 @@ niceness: `-20` = highest priority, `19` = lowest
     read a b; echo $a $b
     tail -1 <file>  # last line
     tail +3 <file>  # cat from line 3
-    za $ITref/Ul/linux/GNUOS/bash.pdf
+    za $IrUl/Linux/GNUOS/bash.pdf
 
 ```bash
 case 'one' in
@@ -1717,7 +1752,8 @@ change `-` to `+` to remove the option
 ### su[do]
     su -  # login shell
 
-substitute user identity
+- `-` = `-l` (= `--login` shell, bringing in the environment)
+- substitute user identity
 
 ### trap
     trap - debug  # turn off debug
@@ -1726,6 +1762,7 @@ substitute user identity
 ### variables
     echo $((2*2))
     export  # lists environment variables
+    export gv1=1; gv2=2; echo "$gv1 $gv2"
     set  # lists all variables
 
 #### arrays
@@ -1783,6 +1820,7 @@ substitute user identity
     empty=''; [ -z $empty ] && echo empty
 
 #### strings
+    $OSL/script_dir.sh
     o lkj | rev | cut -c 2- | rev
     o ljk | sed 's/.$//'
     s='long'; o ${#s} # length
@@ -1827,10 +1865,6 @@ not with `flyline`
     name=polish.ostrich.racing.champion; o "${name%%.*}-${name%.*}-${name#*.}-${name##*.}"
     u=.git.git.git; o ${u%.git}
 
-##### script's name
-    DIR=$(dirname "${BASH_SOURCE[0]}")  # get the directory name
-    DIR=$(realpath "${DIR}")  # resolve its full path if need be
-
 ##### tests
     [[ a.b =~ \. ]] && echo "there's a ."
     [[ ! $t =~ (y|n) ]] && echo 'good answer'
@@ -1842,6 +1876,10 @@ not with `flyline`
 ### xcol
     echo 'pikaur' | xcol pikaur AUR  # show limitation
     ls ~ | xcol music Trash
+
+## coreutils
+- GNU Core Utilities
+- `type -a echo` reveals also `/usr/bin/echo` for which `man echo`
 
 ## flow control
 - `ctrl+q` continue
@@ -1901,17 +1939,17 @@ not with `flyline`
     cpu-x -N
     Openbox Menu > System > CPU-X
 
-## de
+## desktop environment
     echo $XDG_CURRENT_DESKTOP
     openbox --reconfigure
-
-desktop environment
 
 ### Plasma
     Ctrl+Alt+Shift+Del -> exit KDE without saving
     Ctrl+Alt+Del       -> logout screen
     Ctrl+Alt+T         -> Konsole
     Win+PageUp/Down    -> maximises or returns to normal a window
+
+`Konsole`: `Ctrl+-` = `View > Shrink Font`
 
 ### Xfce
     xfce4-display-settings &
@@ -1922,7 +1960,7 @@ desktop environment
 - `Terminal` (`xfce4-terminal`)
     - `ctrl+shift+c` = copy
     - `ctrl+shift+v` = paste
-- `xfwm4-tweaks-settings &` = `Windows Manager Tweaks`
+- `xfwm4-tweaks-settings &` (= `Windows Manager Tweaks`) > ` Compositor > Enable ...`
 
 #### Clipman
 - `~/.cache/xfce4/clipman/textsrc` semicolon-separated list
@@ -2123,6 +2161,7 @@ if no luck, can also kill the `Xfce Notify Daemon`
     journalctl -b -1 -e  # shows end of  -n1000
     journalctl -b -1 -r  # newest first
     journalctl -b -g 'EFI v'  # shows EFI version
+    journalctl -b -g 'random seed'
 
 ## uname
 `uname -a` (= `--all`) handy line of system info
@@ -2153,7 +2192,7 @@ XTerm: `resize`
 
 # term
     [[ $TERM =~ tmux|xterm ]] && o "you're in tmux or xterm"
-    bash $nDrGRs/d-Ul/r-hackerb9/fonttable/fonttable
+    bash $GRs/d-Ul/r-hackerb9/fonttable/fonttable
     echo; for f in 'ANSI Regular' Banner Banner3 Big Bloody Colossal Crazy Doh Doom 'Dot Matrix' Electronic Elite Georgia11 Ivrit Nancyj-Improved Nancyj 'Old Banner' Standard 'Star Wars' Univers Varsity Whimsy 3d ; do echo "$f:"; figurine -f "$f.flf" figurine; done  # very pretty
     meow
     sudo fgconsole  # reports tty number
@@ -2198,6 +2237,7 @@ XTerm: `resize`
     ctrl-s = XOFF
 
 ## Termux
+    getprop | grep model
     if ! [ $TERMUX_VERSION ]; then echo 'not in Termux'; fi
     termux-info
 
@@ -2482,4 +2522,22 @@ avoid Dropbox flexible file names: `fd -u '"|\*|:|<|>|\?|\\|\|'`
 
 - prints newline, word, and byte counts for each file
     - `-l` (= `--lines`) prints only the newline counts
+
+# xmask
+    =0<owner><group><other>
+    umask
+
+`dmask` for directory, `fmask` for files, `umask` for both
+
+## permission restrictions
+0 = rwx
+1 = rw-
+2 = r-x
+3 = r--
+4 = -wx
+5 = -w-
+6 = --x
+7 = ---
+
+nodes can have any permissions of their own up to these
 

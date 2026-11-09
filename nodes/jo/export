@@ -37,17 +37,17 @@ fi # $distro, used below, and in  $Cmdts1/0-adh/adherents.sh
 export notDr="$Storage/notDr"
 [[ $host =~ DOP3040D11S ]] && export notDr="/run/media/jo/HDTB330EK3CA/sync/notDr" # Toshiba
     export nDrGRs="$notDr/GRs"
-        export jkll="$nDrGRs/d-CP/d-encoding/d-Ruby/d-Jekyll"
-            export mnm=$jkll/Jekyll-jekyll-minima  # $mnm  used notably in  $Jhm/_layouts
 
 #==> code 1 $GRs
 if [[ $myDrA && $distro =~ 'Arch' ]]; then
     if [[ $host =~ DOP3040D11S ]]; then
         export GRs=$ITr/GRs
     else
-        export GRs="$nDrGRs"
+        export GRs="$GRs"
     fi
 fi
+    export jkll="$GRs/d-CP/d-encoding/d-Ruby/d-Jekyll"
+        export mnm=$jkll/Jekyll-jekyll-minima  # $mnm  used notably in  $Jhm/_layouts
 
 #==> rooting on  $Drpbx
 # $Drpbx  defined in
@@ -62,7 +62,6 @@ export ITmore=$Drpbx/IT/more
             export ITmUlLA=$ITmUlL/Arch  # $ITmUlLA
 export ITsto=$Drpbx/IT/storage  # $ITsto/diskUsage.build
 export DrThb=$Drpbx/Thb  # $DrThb
-export ulLAhml="$Drpbx/dev/ulLA-hml"  # unix-like Linux Arch huge machine log  $ulLAhml
 
 #===> IT/copied-
 export ITcopCP=$Drpbx/IT/copied-CP  # $ITcopCP
@@ -117,8 +116,9 @@ export ZNc="$DrJo/work-Cz-manage-online-ZNc"
 export cITCP=$ITcore/CP
     export CPdoc=$cITCP/documenting
         export LTXj=$CPdoc/LaTeX/jo  # $LTXj
-    # export CPenc=$cITCP/encoding
-export ITref=$Drpbx/IT/reference  # $ITref
+    export CPenc=$cITCP/encoding  # $CPenc
+export ITref=$Drpbx/IT/reference
+    export IrUl=$ITref/Ul  # $IrUl
 export DWp=$ITcore/serve/DokuWiki/pages  # $DWp
 
 #====> rooting on $onGH
